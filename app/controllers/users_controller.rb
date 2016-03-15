@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  email      :string
+#  password   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class UsersController < ApplicationController
   def index
     @users = User.all
@@ -18,6 +30,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
   end
 
   def destroy

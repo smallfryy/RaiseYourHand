@@ -1,6 +1,14 @@
-<h1> <%= @group.name %> </h1>
+<h1>My Group</h1>
+<h3> <%= @group.name %> </h3>
+<p><%= @group.description %></p>
 <!-- display questions here by (popularity/create date)-->
 <!-- two divs for answered/unanswered -->
 
+<ul><% @questions.each do |question| %>
+<li><%= link_to question.title, group_question_path(@group, question) %></li>
+<% end %>
+</ul>
+
 <!-- Only display if you have permissions -->
-<%= button_to "delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
+<%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
+<%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get %>

@@ -5,3 +5,4 @@
   <li>Password: <%= @user.password %></li>
 </ul>
 <%= button_to "Delete", {controller: :users, action: 'destroy', id: @user.id}, method: :delete %>
+<%= button_to "Edit", {controller: :users, action: 'edit', id: @user.id}, method: :get %>

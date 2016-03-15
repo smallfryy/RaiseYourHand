@@ -1,0 +1,18 @@
+<% if question.errors.any? %>
+  <ul>
+    <% question.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_for group_question_path(group, question) do |f| %>
+  <div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </div>
+  <div class="field">
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  </div>
+  <%= f.submit, "submit" %>
+<% end %>

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  description :text
+#
+
 class GroupsController < ApplicationController
   def index
     @groups = Group.all
@@ -18,6 +29,20 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @questions = @group.questions
+  end
+
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+      redirect_to @group
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -28,6 +53,6 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :description)
   end
 end

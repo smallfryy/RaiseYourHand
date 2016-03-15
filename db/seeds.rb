@@ -16,9 +16,13 @@ require 'faker'
 #     fake_groups = Faker::Lorem.words(10)
 #     fake_groups.each do
   10.times do
-    Group.create(name: Faker::Lorem.word)
+    Group.create(name: Faker::Lorem.word, description: Faker::Lorem.paragraph)
   end
 
   20.times do
     User.create(name: Faker::Name.first_name, email: Faker::Internet.email, password: Faker::Internet.password(6, 15))
+  end
+
+  100.times do 
+    Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Faker::Number.between(from = 1, to = 10), user_id: Faker::Number.between(from = 1, to = 10))
   end
