@@ -1,8 +1,9 @@
-# Raiseyourhand
+# Raise Your Hand
+================================
 
 ## Description
 
-Add a short description of your app.
+Raise Your Hand: your answer for everything. Raise Your Hand is a group-based platform for Q&A on all-things code-related.
 
 ## Screenshots
 
@@ -15,7 +16,9 @@ like?
 
 ## Features
 
-Bullet point some of the key features of your app here.
+- StackOverFlow Gem 
+- Faker Gem 
+
 
 ## Usage
 
