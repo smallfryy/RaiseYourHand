@@ -18,3 +18,7 @@ require 'faker'
   10.times do
     Group.create(name: Faker::Lorem.word)
   end
+
+  20.times do
+    User.create(name: Faker::Name.first_name, email: Faker::Internet.email, password: Faker::Internet.password(6, 15))
+  end

@@ -1,3 +1,6 @@
 <h1> <%= @group.name %> </h1>
 <!-- display questions here by (popularity/create date)-->
 <!-- two divs for answered/unanswered -->
+
+<!-- Only display if you have permissions -->
+<%= button_to "delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>

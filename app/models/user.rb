@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :statuses
   validates_presence_of :name, :email, :password
   validates_uniqueness_of :email, :name
-  validates :password, length: {minimum: 6}
+  validates :password, length: {minimum: 6, maximum: 16}
   #will make custom email validation later
 
   
