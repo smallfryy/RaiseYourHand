@@ -11,6 +11,7 @@
 #
 
 class User < ActiveRecord::Base
+  attr_accessor :password_confirmation
   has_many :questions
   has_many :answers
   has_many :statuses
@@ -19,8 +20,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :name
   validates :password, length: {minimum: 6, maximum: 16}
   #will make custom email validation later
-
-  
 
 
 end

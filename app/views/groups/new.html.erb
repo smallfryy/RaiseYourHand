@@ -1,3 +1,11 @@
+<h1> Raise Your Hand Group Registration: </h1>
+<% if @group.errors.any? %>
+  <ul>
+    <% @group.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @group do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
