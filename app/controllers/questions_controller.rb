@@ -5,11 +5,14 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    @group = Group.find(params[:group_id])
+    # give group_id
+    @question = @group.questions.build
   end
 
   def create
-    @question = Question.new(question_params)
+    @group = Group.find(params[:group_id])
+    @question = @group.questions.build(question_params)
     if @question.save
       redirect_to group_question_path(@question.group, @question)
     else
@@ -28,6 +31,7 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
+    @group = @question.group
     if @question.update(question_params)
       redirect_to group_question_path(@question.group, @question)
     else
@@ -39,7 +43,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @group = @question.group
     @question.destroy
-    redirect_to group_questions_path(@group)
+    redirect_to group_path(@group)
   end
 
   private

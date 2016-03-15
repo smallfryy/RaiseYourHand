@@ -1,2 +1,24 @@
 <h1> Edit Your Question </h1>
-<%= render partial:'form', locals:{question: @question, group: @group} %>
+<% if @question.errors.any? %>
+  <ul>
+    <% @question.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@group, @question] do |f| %>
+  <div class="field">
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  </div>
+  <div class="field">
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  </div>
+  <!-- hidden user_id -->
+  <div class="field">
+  <input type="hidden" name="question[user_id]" value="1">
+  </div>
+  <%= f.submit "Submit" %>
+<% end %>
