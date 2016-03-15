@@ -11,5 +11,5 @@
 class Group < ActiveRecord::Base
   has_many :statuses
   has_many :users, through: :statuses
-  validate_presence_of :user_id, :group_id, :status
+  validates_presence_of :name
 end

@@ -20,5 +20,7 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6}
   #will make custom email validation later
 
+  
+
 
 end
