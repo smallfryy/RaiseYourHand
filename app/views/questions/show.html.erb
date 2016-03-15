@@ -1,8 +1,9 @@
 <h1> Question </h1>
 
 <h2><%= @question.title %></h2>
-<p><%= @question.content %><p>
+<p><%= @question.content %></p>
 
 <!-- Only display if you have permissions -->
-<%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>
-<%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
+<br><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>
+<br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
+<br><%= link_to "Group Page", @question.group %>
