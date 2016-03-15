@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :users, :tags
+  resources :groups do 
+     resources :questions
+  end
+  get '/', to: 'pages#home', as: 'home'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
