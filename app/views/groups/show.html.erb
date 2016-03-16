@@ -15,5 +15,7 @@
   <%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get %>
 <% end %>
 <% if current_user %>
+<!--check if group member, then display this -->
   <%= link_to "New Question", new_group_question_path(@group) %>
+  <%= link_to "Request Membership!", group_join_path(@group) %>
 <% end %>

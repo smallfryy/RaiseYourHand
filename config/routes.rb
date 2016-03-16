@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+  get '/groups/:id/join', to: 'groups#join', as: 'group_join'
+  get '/groups/:id/memberships', to: 'groups#memberships', as: 'group_membership'
+  patch '/groups/:id/users', to: 'groups#approve', as: 'approved_memberships'
   resources :users, :tags, :sessions
   resources :groups do 
      resources :questions

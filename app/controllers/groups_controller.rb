@@ -28,7 +28,6 @@ class GroupsController < ApplicationController
       if @group.save
         status = Status.create(user_id: current_user.id, group_id: @group.id, status: "admin")
         @group.statuses << status
-        binding.pry
         redirect_to @group
       else
         render :new
@@ -72,6 +71,46 @@ class GroupsController < ApplicationController
       #add message
     end
   end
+
+  def join
+    redirect_to @group unless current_user
+    @user = current_user
+    @group = Group.find(params[:id])
+    unless @group.users.include?(@user)
+      status = Status.create(user_id: @user.id, group_id: @group.id, status: "pending")
+      @user.statuses << status
+      @group.statuses << status
+    end
+    redirect_to @group
+  end
+
+  def memberships
+    redirect_to @group unless current_user
+    @user = current_user
+    @group = Group.find(params[:id])
+    if @group.admins.include?(@user)
+      @users = @group.pending
+      render :membership
+    else
+      redirect_to @group
+    end
+  end
+
+  def approve
+    redirect_to @group unless current_user
+    @group = Group.find(params[:id])
+    @user = current_user 
+    redirect_to @group unless params[:ids].present?
+    redirect to @group unless @group.admins.include?(@user)
+    params[:ids].each do |id|
+      user = User.find(id)
+      status = Status.find_by(user_id: user.id, group_id: @group.id)
+      status.update(status: "member")
+    end
+    binding.pry
+    redirect_to @group
+  end
+
 
   private
   def group_params
