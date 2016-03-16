@@ -32,7 +32,6 @@ class QuestionsController < ApplicationController
     @answer.question = @question
     @answer.user = current_user
     @group = @question.group
-    binding.pry
   end
 
   def edit
