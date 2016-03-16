@@ -1,6 +1,7 @@
 <h1>My Group</h1>
 <h3> <%= @group.name %> </h3>
 <p><%= @group.description %></p>
+<p>Group Admins: <%= @group.admins.map{|admin| admin.name}.join(", ") %></p>
 <!-- display questions here by (popularity/create date)-->
 <!-- two divs for answered/unanswered -->
 
@@ -8,7 +9,6 @@
 <li><%= link_to question.title, group_question_path(@group, question) %></li>
 <% end %>
 </ul>
-
 <!-- Only display if you have permissions -->
 <% if @group.admins.include?(current_user) %>
   <%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>

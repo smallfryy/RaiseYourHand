@@ -7,22 +7,24 @@
     <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
   <% end %>
 </p>
-
 <!-- Only display if you have permissions -->
 <% if @question.user == current_user %>
   <br><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>
   <br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
 <% end %>
 <br><%= link_to "Group Page", @question.group %>
-
-<br> <%= form_for [@group, @question, @answer] do |f| %>
-<%= f.text_area :content %>
-<%= f.submit %>
+<% if @group.members.include?(current_user) %>
+  <br> <%= form_for [@group, @question, @answer] do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+  <% end %>
 <% end %>
 
-<h1>Answers!</h1>
-<ul><% @answers.each do |answer| %>
-<li><%= answer.content %></li>
+<% if @answers.present? %>
+  <h1>Answers!</h1>
+  <ul><% @answers.each do |answer| %>
+  <li><%= answer.content %></li>
+  <% end %>
+  </ul>
 <% end %>
-</ul>
 

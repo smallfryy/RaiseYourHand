@@ -19,16 +19,19 @@ require 'faker'
     Tag.create(name: Faker::Company.buzzword)
   end
 
-  10.times do
-    Group.create(name: Faker::Lorem.word, description: Faker::Lorem.paragraph)
+  20.times do
+    User.create(name: Faker::Name.first_name, email: Faker::Internet.email, password: "password", password_confirmation: "password")
   end
 
-  20.times do
-    User.create(name: Faker::Name.first_name, email: Faker::Internet.email, password: Faker::Internet.password(6, 15))
+  10.times do
+    Group.create(name: Faker::Lorem.word, description: Faker::Lorem.paragraph)
+    admin_id = Faker::Number.between(from = 1, to = 20)
+    status = Status.create(user_id: admin_id, group_id: Group.all.last.id, status: "admin")
+    Group.all.last.statuses << status
   end
 
   100.times do 
-    question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Faker::Number.between(from = 1, to = 10), user_id: Faker::Number.between(from = 1, to = 10))
+    question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Faker::Number.between(from = 1, to = 10), user_id: Faker::Number.between(from = 1, to = 20))
     Faker::Number.between(from = 1, to = 4).times do
       question.tags << Tag.find(Faker::Number.between(from = 1, to = 30))
     end
