@@ -12,7 +12,9 @@
 #
 
 class Question < ActiveRecord::Base
-  has_many :answers 
+  has_many :answers
+  has_many :question_tags
+  has_many :tags, through: :question_tags 
   belongs_to :user 
   belongs_to :group
   validates_presence_of :user_id, :group_id, :content, :title

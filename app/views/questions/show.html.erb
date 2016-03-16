@@ -2,6 +2,11 @@
 
 <h2><%= @question.title %></h2>
 <p><%= @question.content %></p>
+<p>
+  <% @question.tags.each do |tag| %>
+    <%=link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
+  <% end %>
+</p>
 
 <!-- Only display if you have permissions -->
 <br><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>

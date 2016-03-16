@@ -15,6 +15,10 @@ require 'faker'
 #     g.save
 #     fake_groups = Faker::Lorem.words(10)
 #     fake_groups.each do
+  30.times do 
+    Tag.create(name: Faker::Company.buzzword)
+  end
+
   10.times do
     Group.create(name: Faker::Lorem.word, description: Faker::Lorem.paragraph)
   end
@@ -24,5 +28,9 @@ require 'faker'
   end
 
   100.times do 
-    Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Faker::Number.between(from = 1, to = 10), user_id: Faker::Number.between(from = 1, to = 10))
+    question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Faker::Number.between(from = 1, to = 10), user_id: Faker::Number.between(from = 1, to = 10))
+    Faker::Number.between(from = 1, to = 4).times do
+      question.tags << Tag.find(Faker::Number.between(from = 1, to = 30))
+    end
+    question.save
   end
