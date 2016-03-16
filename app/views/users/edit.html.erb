@@ -1,2 +1,8 @@
+<!--Added if/else to make sure that only current user edits their own account -->
+<% if current_user == @user.id %>
 <h1> Edit your account: </h1>
 <%= render partial:'form', locals:{user: @user, edit: true} %>
+<% else %>
+<h2>You dont have permission to edit another user's profile! Naughty, naughty!!!</h2> <br>
+<%= link_to "Go Back", users_path %>
+<% end %>

@@ -22,7 +22,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      session[:id] = @user.id
+      #redirect_to @user
+      redirect_to home_path, notice: "Thanks for signing up!"
     else
       render :new
     end

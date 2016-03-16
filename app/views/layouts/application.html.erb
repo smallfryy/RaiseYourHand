@@ -8,6 +8,17 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+<div id="container">
+  <div id="user_header">
+  <% if current_user %>
+  Logged in as <%= current_user.email %>
+  <%= link_to "Log Out",logout_path %>
+     <% else %>
+  <%= link_to "Sign Up", signup_path %>
+  <%= link_to "Log In", login_path %>
+    <% end %>
+  </div>
+</div>
 
 <%= yield %>
 

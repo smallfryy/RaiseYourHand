@@ -1,8 +1,9 @@
 <h1><%= @user.name %>:</h1>
 <ul>
   <!-- Only display if user is logged in -->
+  <li>User Name: <%= @user.name %> </li>
   <li>Email: <%= @user.email %></li>
-  <li>Password: <%= @user.password %></li>
+  
 </ul>
 <%= button_to "Delete", {controller: :users, action: 'destroy', id: @user.id}, method: :delete %>
 <%= button_to "Edit", {controller: :users, action: 'edit', id: @user.id}, method: :get %>

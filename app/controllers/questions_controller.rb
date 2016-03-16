@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_filter :authorize, only: [:edit, :update]
 
   def index
     @questions = Question.all
@@ -6,18 +7,21 @@ class QuestionsController < ApplicationController
 
   def new
     @group = Group.find(params[:group_id])
-    # give group_id
     @question = @group.questions.build
   end
 
   def create
     @group = Group.find(params[:group_id])
+    @user = User.find(session[:id])
     @question = @group.questions.build(question_params)
+    @question.user =  @user
+    binding.pry
     if @question.save
       redirect_to group_question_path(@question.group, @question)
     else
       render :new
     end
+
   end
 
   def show
@@ -27,11 +31,15 @@ class QuestionsController < ApplicationController
   def edit
     @question = Question.find(params[:id])
     @group = @question.group
+    @user = User.find(session[:id])
+    @user = @question.user
   end
 
   def update
     @question = Question.find(params[:id])
     @group = @question.group
+     @user = User.find(session[:id])
+    @user = @question.user
     if @question.update(question_params)
       redirect_to group_question_path(@question.group, @question)
     else
