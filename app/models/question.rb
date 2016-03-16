@@ -21,22 +21,6 @@ class Question < ActiveRecord::Base
   #accepts_nested_attributes
   accepts_nested_attributes_for :tags, reject_if: :all_blank
   
-  # def tag_name=(name)
-  
-  #   # tag.save
-  #    self.tags.build(Tag.find_or_create_by(name: name))
-  #   # self.save
-  # end
-
-  # def tag_ids
-  #   self.tags
-  
-
-  # def tag_names(tags)
-  #   tags.each do |tag|
-  #     self.tags << Tag.find_or_create_by(name: )
-  #   end
-  # end
 
 
   # def tag_name
