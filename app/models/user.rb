@@ -24,5 +24,4 @@ class User < ActiveRecord::Base
   validates :password_confirmation, length: {minimum: 6, maximum: 16}
   #will make custom email validation later
 
-
 end

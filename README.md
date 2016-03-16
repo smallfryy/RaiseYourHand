@@ -3,7 +3,9 @@
 
 ## Description
 
-Raise Your Hand: your answer for everything. Raise Your Hand is a group-based platform for Q&A on all-things code-related.
+Raise Your Hand: your answer for everything. 
+
+Raise Your Hand is a group-based platform for Q&A on all-things code-related.
 
 ## Screenshots
 
@@ -19,7 +21,6 @@ like?
 - StackOverFlow Gem 
 - Faker Gem 
 
-
 ## Usage
 
 How do users use your app?
@@ -34,9 +35,16 @@ Any things in particular you'd like to see in pull requests?
 What features are you currently working on? Only mention things that you
 actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
 
-## Author
+## Authors
 
-Link to your blog, twitter, etc!
+Holly Peck 
+holly.m.peck@gmail.com
+
+Michelle Mikhalevsky 
+mmikhalevsky@gmail.com
+
+Surya Chinta
+stchinta@gmail.com
 
 ## License
 

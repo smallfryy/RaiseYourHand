@@ -17,7 +17,6 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name
 
 
-
   def admins
     User.joins(:statuses).where("statuses.group_id = ?", self.id).where("statuses.status = ?", "admin")
   end
@@ -34,9 +33,6 @@ class Group < ActiveRecord::Base
   def pending
     users.where("statuses.status = ?", "pending")
   end
-
- 
-
 
 
 end
