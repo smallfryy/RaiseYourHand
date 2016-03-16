@@ -19,15 +19,13 @@
 
   <div class="field">
   <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br> 
-  <%= f.fields_for :tags do |tag_form| %>
-    <%= tag_form.label :name %>
-    <%= tag_form.text_field :name %>
-  <% end %>
+  <label name="tag_name" value="New Tag">
+  <input type="text" name="tag_name" value="">
   </div>
 
   <!-- hidden user_id -->
   <div class="field">
-  <input type="hidden" name="question[user_id]" value="1">
+  <input type="hidden" name="question[user_id]" value=<%=current_user.id%>>
   </div>
   <%= f.submit "Submit" %>
 <% end %>
