@@ -4,7 +4,7 @@
 <p><%= @question.content %></p>
 <p>Tags: 
   <% @question.tags.each do |tag| %>
-    <%=link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
+    <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
   <% end %>
 </p>
 

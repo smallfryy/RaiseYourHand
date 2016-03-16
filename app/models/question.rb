@@ -18,4 +18,14 @@ class Question < ActiveRecord::Base
   belongs_to :user 
   belongs_to :group
   validates_presence_of :user_id, :group_id, :content, :title
+  
+  def tag_name=(name)
+    tag = Tag.find_or_create_by(name: name)
+    tag.save
+    self.tags << tag
+    self.save
+  end
+
+  def tag_name
+  end
 end

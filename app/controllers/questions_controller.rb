@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   def new
     @group = Group.find(params[:group_id])
     @question = @group.questions.build
+    @question.tags.build
   end
 
   def create
@@ -18,6 +19,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to group_question_path(@question.group, @question)
     else
+      binding.pry
       render :new
     end
 
@@ -55,6 +57,6 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit(:title, :content, :group_id, :user_id)
+    params.require(:question).permit(:title, :content, :group_id, :user_id, :tag_name, :tag_ids => [])
   end
 end
