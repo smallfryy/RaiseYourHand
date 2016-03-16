@@ -15,4 +15,11 @@ class Group < ActiveRecord::Base
   has_many :questions
   validates_presence_of :name, :description
   validates_uniqueness_of :name
+
+
+
+  def admins
+    User.joins(:statuses).where("statuses.group_id = ?", self.id).where("statuses.status = ?", "admin")
+  end
+
 end

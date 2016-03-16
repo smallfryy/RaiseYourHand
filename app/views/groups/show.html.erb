@@ -10,8 +10,10 @@
 </ul>
 
 <!-- Only display if you have permissions -->
-<%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
-<%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get %>
+<% if @group.admins.include?(current_user) %>
+  <%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
+  <%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get %>
+<% end %>
 <% if current_user %>
-<%= link_to "New Question", new_group_question_path(@group) %>
+  <%= link_to "New Question", new_group_question_path(@group) %>
 <% end %>
