@@ -15,7 +15,6 @@ class QuestionsController < ApplicationController
     @user = User.find(session[:id])
     @question = @group.questions.build(question_params)
     @question.user =  @user
-    binding.pry
     if @question.save
       redirect_to group_question_path(@question.group, @question)
     else
