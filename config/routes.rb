@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   resources :users, :tags, :sessions
   resources :groups do 
-     resources :questions
+     resources :questions do 
+        resources :answers
+      end
   end
   get '/', to: 'pages#home', as: 'home'
 

@@ -19,14 +19,20 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to group_question_path(@question.group, @question)
     else
-      binding.pry
+      # binding.pry
       render :new
     end
-
   end
 
   def show
     @question = Question.find(params[:id])
+    @answers = @question.answers
+    # creating new instance of answer and rendering view
+    @answer = Answer.new 
+    @answer.question = @question
+    @answer.user = current_user
+    @group = @question.group
+    binding.pry
   end
 
   def edit

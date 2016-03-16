@@ -12,3 +12,15 @@
 <br><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>
 <br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
 <br><%= link_to "Group Page", @question.group %>
+
+<br> <%= form_for [@group, @question, @answer] do |f| %>
+<%= f.text_field :content %>
+<%= f.submit %>
+<% end %>
+
+<h1>Answers!</h1>
+<ul><% @answers.each do |answer| %>
+<li><%= answer.content %></li>
+<% end %>
+</ul>
+

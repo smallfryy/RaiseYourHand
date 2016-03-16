@@ -27,4 +27,10 @@ class Question < ActiveRecord::Base
 
   def tag_name
   end
+
+  
+
+
+
+
 end

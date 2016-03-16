@@ -13,5 +13,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
-  validates_presence_of :question_id, :user_id, :content
+  # can we create an answer with nil question_id / user_id
+  validates_presence_of :content
 end
