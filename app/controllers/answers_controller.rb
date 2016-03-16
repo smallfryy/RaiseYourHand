@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   # URL groups/group_id/question/question_id/answers
   # nested under question
   def index
-  @answers = Answers.all
+  @answers = Answer.all
   end
 
   def create
@@ -15,6 +15,20 @@ class AnswersController < ApplicationController
   @question = Question.find(params[:question_id])
   redirect_to group_question_path(@group, @question)
   end 
+
+  def edit
+    @answer = Answer.find(params[:id])
+    @group = @question.group
+    #@user = User.find(session[:id])
+    @user = @question.user
+  end
+
+  def update
+
+  end
+
+  def destroy
+  end
 
   private
 
