@@ -28,6 +28,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @group = @question.group
+    redirect_to group_question_path(@question.group,@question, @answer) unless current_user == @answer.user
     #@user = @question.user
     #error couldnt find anser without id
   end
