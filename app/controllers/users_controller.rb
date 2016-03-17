@@ -48,6 +48,14 @@ class UsersController < ApplicationController
     # end
   end
 
+  def admin
+    @user = User.find(params[:id])
+    if current_user && @user.admin_status.present?
+      @groups = @user.admin_status
+      render :admin
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

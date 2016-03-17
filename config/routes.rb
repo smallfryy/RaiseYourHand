@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   patch '/groups/:id/users', to: 'groups#approve', as: 'approved_memberships'
   get '/answers/:id/edit', to: 'answers#edit', as: 'edit_answer'
   get '/answers/:id/destroy', to: 'answers#destroy', as: 'delete_answer'
+  get '/users/:id/adminpanel', to: 'users#admin', as: 'admin'
   resources :users, :tags, :sessions
   resources :groups do 
      resources :questions do 

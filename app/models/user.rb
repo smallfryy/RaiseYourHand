@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def group_status(group)
     User.joins(:statuses).where('statuses.group_id = ? AND statuses.user_id = ?', group.id, self.id).where.not("statuses.status = ?", "pending").pluck('statuses.status').first
   end
+
+  def admin_status
+    Group.joins(:statuses).joins(:users).where("users.id =?", self.id).where("statuses.status =?", "admin")
+  end
 end
