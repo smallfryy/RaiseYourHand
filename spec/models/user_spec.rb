@@ -45,4 +45,10 @@ describe "User" do
       expect(user3.errors.full_messages).to include "Name has already been taken"
   end
 
+  it "validates email format" do
+    user1 = User.create(email: "hahahanicetry")
+
+    expect(user1.errors.full_messages).to include "Email is invalid"
+  end
+
 end
