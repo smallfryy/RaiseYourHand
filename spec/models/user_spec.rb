@@ -25,19 +25,19 @@ describe "User" do
 
   # this is not passing idk why
   it "is invaid without email" do 
-      user1 = Group.create(email: nil)
-      user2 = Group.create(email: "")
-      user3 = Group.create(email: "user@user.com")
+      user1 = User.create(email: nil)
+      user2 = User.create(email: "")
+      user3 = User.create(email: "user@user.com")
 
-      expect(user1.errors.full_messages).to include "email can't be blank"
-      expect(user2.errors.full_messages).to include "email can't be blank"
-      expect(user3.errors.full_messages).to_not include "email can't be blank"
+      expect(user1.errors.full_messages).to include "Email can't be blank"
+      expect(user2.errors.full_messages).to include "Email can't be blank"
+      expect(user3.errors.full_messages).to_not include "Email can't be blank"
   end
 
   #help
   it "is invaid without unique name" do
       user1 = User.create(name: "My Amazing Name", email: "holly@holly.com")  
-      user2 = User.create(name: "My Name", email: "email@email.com")
+      user2 = User.create(name: "My Name", email: "email@email.com", password: "password", password_confirmation: "password")
       user3 = User.create(name: "My Name", email: "email@email.com")
 
       expect(user1.errors.full_messages).to_not include "Name has already been taken"

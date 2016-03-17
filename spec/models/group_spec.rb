@@ -8,7 +8,6 @@
 #  updated_at  :datetime         not null
 #  description :text
 #
-
 require 'spec_helper'
 
 describe "Group" do 
@@ -42,6 +41,7 @@ describe "Group" do
       expect(group3.errors.full_messages).to include "Name has already been taken"
   end
 end
+
 
 
 

@@ -21,5 +21,5 @@ describe "Answer" do
       expect(answer1.errors.full_messages).to include "Content can't be blank"
       expect(answer2.errors.full_messages).to include "Content can't be blank"
       expect(answer3.errors.full_messages).to_not include "Content can't be blank"
+    end
   end
-end
