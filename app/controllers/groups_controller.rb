@@ -100,14 +100,14 @@ class GroupsController < ApplicationController
     redirect_to @group unless current_user
     @group = Group.find(params[:id])
     @user = current_user 
-    redirect_to @group unless params[:ids].present?
     redirect to @group unless @group.admins.include?(@user)
-    params[:ids].each do |id|
-      user = User.find(id)
-      status = Status.find_by(user_id: user.id, group_id: @group.id)
-      status.update(status: "member")
+    if params[:ids].present?
+      params[:ids].each do |id|
+        user = User.find(id)
+        status = Status.find_by(user_id: user.id, group_id: @group.id)
+        status.update(status: "member")
+      end
     end
-    binding.pry
     redirect_to @group
   end
 

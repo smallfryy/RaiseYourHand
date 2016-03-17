@@ -10,12 +10,19 @@
 <% end %>
 </ul>
 <!-- Only display if you have permissions -->
-<% if @group.admins.include?(current_user) %>
+<% if  current_user && @group.admins.include?(current_user) %>
   <%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
   <%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get %>
 <% end %>
 <% if current_user %>
+  <% if @group.members.include?(current_user) %>
 <!--check if group member, then display this -->
-  <%= link_to "New Question", new_group_question_path(@group) %>
-  <%= link_to "Request Membership!", group_join_path(@group) %>
+  <%= link_to "New Question", new_group_question_path(@group) %>&nbsp;&nbsp;&nbsp;&nbsp;
+     <% end %>
+  <!-- only display request membership if user is not a member or admin -->
+  <% unless @group.users.include?(current_user) %>
+    <%= link_to "Request Membership!", group_join_path(@group) %>&nbsp;&nbsp;&nbsp;&nbsp;
+  <% end %>
 <% end %>
+<%= link_to "Back", groups_path%><br>
+

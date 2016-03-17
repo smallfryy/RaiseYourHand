@@ -18,12 +18,14 @@
   <%= f.text_area :content %>
   <%= f.submit %>
   <% end %>
-<% end %>
+  <% end %>
+
 
 <% if @answers.present? %>
   <h1>Answers!</h1>
   <ul><% @answers.each do |answer| %>
-  <li><%= answer.content %></li>
+  <p><%= link_to "edit", edit_answer_path(answer.id)%></p>
+    <li><%= answer.content %> </li>
   <% end %>
   </ul>
 <% end %>

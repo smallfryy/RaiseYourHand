@@ -42,14 +42,14 @@ class QuestionsController < ApplicationController
   def edit
     @question = Question.find(params[:id])
     @group = @question.group
-    #@user = User.find(session[:id])
+    @user = User.find(session[:id])
     @user = @question.user
   end
 
   def update
     @question = Question.find(params[:id])
     @group = @question.group
-     #@user = User.find(session[:id])
+     @user = User.find(session[:id])
     @user = @question.user
     if @question.update(question_params)
       if params[:tag_name].present?
