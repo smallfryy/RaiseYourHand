@@ -1,5 +1,5 @@
 <!--Added if/else to make sure that only current user edits their own account -->
-<% if current_user == @user.id %>
+<% if current_user == @user%>
   <h1> Edit your account: </h1>
   <%= render partial:'form', locals:{user: @user, edit: true} %>
 <% else %>
