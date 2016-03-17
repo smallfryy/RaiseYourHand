@@ -1,5 +1,6 @@
-<h1>Group Channels</h1>
-
-<% @groups.each do |group| %>
-  <p><%= link_to group.name, group %></p>
-<% end %>
+<h1>Classes:</h1>
+<ul>
+  <% @groups.each do |group| %>
+    <li><p>- <%= link_to(group.name, group) << " - " << group.description%><p></li>
+  <% end %>
+</ul>

@@ -1,25 +1,22 @@
-<h1> Question </h1>
-
-<h2><%= @question.title %></h2>
+<h1><%= @question.title %></h1>
 <p><%= @question.content %></p>
 <p>Tags: 
   <% @question.tags.each do |tag| %>
     <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
   <% end %>
 </p>
+<div class="horizontalLine"></div>
 <!-- Only display if you have permissions -->
 <% if @question.user == current_user %>
   <br><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>
   <br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
 <% end %>
-<br><%= link_to "Group Page", @question.group %>
 <% if @group.members.include?(current_user) %>
   <br> <%= form_for [@group, @question, @answer] do |f| %>
     <%= f.text_area :content %>
     <%= f.submit %>
   <% end %>
 <% end %>
-
 
 <% if @answers.present? %>
   <h1>Answers!</h1>
@@ -32,5 +29,8 @@
       <% end %>
     <% end %>
   </ul>
+  <div class="horizontalLine"></div>
 <% end %>
+
+<br><%= link_to "Group Page", @question.group %>
 

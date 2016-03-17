@@ -1,5 +1,4 @@
-<h1>My Group</h1>
-<h3> <%= @group.name %> </h3>
+<h1> <%= @group.name.capitalize %> </h1>
 <p><%= @group.description %></p>
 <p>Group Admins: <%= @group.admins.map{|admin| admin.name}.join(", ") %></p>
 <!-- display questions here by (popularity/create date)-->
@@ -7,9 +6,12 @@
 
 <ul>
   <% @questions.each do |question| %>
-    <li><%= link_to question.title, group_question_path(@group, question) %></li>
+    <li><p>- <%= link_to question.title, group_question_path(@group, question) %></p></li>
   <% end %>
 </ul>
+<br>
+<div class="horizontalLine"></div>
+<br>
 <!-- Only display if you have permissions -->
 <% if  current_user && @group.admins.include?(current_user) %>
   <%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
@@ -23,7 +25,7 @@
   <% end %>
   <!-- only display request membership if user is not a member or admin -->
   <% unless @group.users.include?(current_user) %>
-    <%= link_to "Request Membership!", group_join_path(@group) %><br>
+    <%= link_to "Request To Join", group_join_path(@group) %><br>
   <% end %>
 <% end %>
 <% if @group.admins.include?(current_user) %>
