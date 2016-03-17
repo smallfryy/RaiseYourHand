@@ -8,24 +8,24 @@
 
 <%= form_for [group, question] do |f| %>
   <div class="field">
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
 
   <div class="field">
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
   </div>
 
   <div class="field">
-  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br> 
-  <label name="tag_name" value="New Tag">
-  <input type="text" name="tag_name" value="">
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br> 
+    <label name="tag_name" value="New Tag">
+    <input type="text" name="tag_name" value="">
   </div>
 
   <!-- hidden user_id -->
   <div class="field">
-  <input type="hidden" name="question[user_id]" value=<%=current_user.id%>>
+    <input type="hidden" name="question[user_id]" value=<%=current_user.id%>>
   </div>
   <%= f.submit "Submit" %>
 <% end %>

@@ -15,16 +15,22 @@
 <br><%= link_to "Group Page", @question.group %>
 <% if @group.members.include?(current_user) %>
   <br> <%= form_for [@group, @question, @answer] do |f| %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
+    <%= f.text_area :content %>
+    <%= f.submit %>
   <% end %>
 <% end %>
 
+
 <% if @answers.present? %>
   <h1>Answers!</h1>
-  <ul><% @answers.each do |answer| %>
-  <li><%= answer.content %></li>
-  <% end %>
+  <ul>
+    <% @answers.each do |answer| %>
+      <li><%= answer.content %> </li>
+      <% if answer.user == current_user %>
+        <p><%= link_to"Edit", edit_answer_path(answer.id)%>&nbsp;&nbsp;
+        <%= link_to"Delete", delete_answer_path(answer.id)%></p>
+      <% end %>
+    <% end %>
   </ul>
 <% end %>
 

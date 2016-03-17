@@ -1,8 +1,8 @@
 <h1> Edit Your Question </h1>
   
-  <% if @user == current_user %>
+<% if @user == current_user %>
   <%= render partial:'form', locals:{question: @question, group: @group} %>
 <% else %>
-<h3>You can't edit another user's question!!!</h3>
-<h2><%=link_to "Back", group_question_path(@group,@question) %></h2>
+  <h3>You can't edit another user's question!!!</h3>
+  <h2><%=link_to "Back", group_question_path(@group,@question) %></h2>
 <% end %>
