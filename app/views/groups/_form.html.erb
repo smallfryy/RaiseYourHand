@@ -6,8 +6,10 @@
     <% end %>
   </ul>
 <% end %>
+
 <%= form_for group do |f| %>
   <% if !edit %>
+  
     <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -17,5 +19,7 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
-  <%= f.submit %>
+  <%= f.submit 'Submit', class: "btn btn-primary" %>
 <% end %>
+
+

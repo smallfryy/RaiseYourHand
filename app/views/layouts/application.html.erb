@@ -8,26 +8,38 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
-<div id="container">
-  <div id="user_header">
-  <h1> Raise Your Hand </h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class= "navbar-brand">Raise Your Hand</div>
+    </div>
 
-  <% if current_user %>
-    Logged in as <%= current_user.name %><br>
-    <%= link_to "Home", home_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to "Register Group", new_group_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to "Log Out",logout_path %>
-  <% else %>
-    <%= link_to "Home", home_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to "Sign Up", signup_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to "Log In", login_path %>
-  <% end %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        
+        <%if current_user %>
+            <li><%= link_to "Home", home_path %> </li>
+            <li><%= link_to "Register Group", new_group_path %></li>
+            <li><%= link_to "Log Out",logout_path %></li>
+        <% else %>
+           <li><%= link_to "Home", home_path %></li>
+           <li><%= link_to "Sign Up", signup_path %></li>
+           <li><%= link_to "Log In", login_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div>
   </div>
-</div>
-<br>
-<div class="horizontalLine">
+</nav>
 
-</div>
 
 <%= yield %>
 
