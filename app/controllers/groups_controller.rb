@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
 
   def create
     if current_user
-    @group = Group.new(group_params)
+      @group = Group.new(group_params)
       if @group.save
         status = Status.create(user_id: current_user.id, group_id: @group.id, status: "admin")
         @group.statuses << status
@@ -44,19 +44,18 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-      @user = current_user
-    unless @group.admins.include?(@user)
-      redirect_to @group
-    end
+    @user = current_user
+    redirect_to @group unless @group.admins.include?(@user)
   end
 
   def update
     @group = Group.find(params[:id])
-    if @group.update(group_params)
-      redirect_to @group
-    else
-      render :edit
-    end
+    @group.update(group_params) ? (redirect_to @group) : (render :edit)
+    # if @group.update(group_params)
+    #   redirect_to @group
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy

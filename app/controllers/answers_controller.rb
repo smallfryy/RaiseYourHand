@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   # URL groups/group_id/question/question_id/answers
   # nested under question
   def index
-  @answers = Answer.all
+    @answers = Answer.all
   end
 
   def new
@@ -12,13 +12,13 @@ class AnswersController < ApplicationController
 
   def create
     #fix???
-  @answer = Answer.new(answer_params)
-  @answer.question_id = params[:question_id]
-  @answer.user = current_user
-  @answer.save
-  @group = Group.find(params[:group_id])
-  @question = Question.find(params[:question_id])
-  redirect_to group_question_path(@group, @question)
+    @answer = Answer.new(answer_params)
+    @answer.question_id = params[:question_id]
+    @answer.user = current_user
+    @answer.save
+    @group = Group.find(params[:group_id])
+    @question = Question.find(params[:question_id])
+    redirect_to group_question_path(@group, @question)
   end 
 
 
@@ -49,13 +49,12 @@ class AnswersController < ApplicationController
 
   def destroy
     #change to answer
-    @question = Question.find(params[:id])
+    @answer = Answer.find(params[:id])
+    @question = @answer.question
     @group = @question.group
-    if current_user == @question.user
-      @question.destroy
-      redirect_to group_path(@group)
-    else
-      redirect_to @group
+    if current_user == @answer.user
+      @answer.destroy
+      redirect_to group_question_path(@question.group, @question, @answer)
     end
   end
 
@@ -63,7 +62,7 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-  params.require(:answer).permit(:content, :question, :group)
+    params.require(:answer).permit(:content, :question, :group)
   end
 
 end

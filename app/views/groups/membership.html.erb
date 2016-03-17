@@ -1,12 +1,12 @@
 <h1>Pending Memberships</h1>
- <%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
-<ul>
-  <%@users.each do |user| %>
-  <li>
-  <label>Accept <%=user.name%></label>
-  <%=check_box_tag('ids[]', user.id) %>
-  </li>
-  <%end%>
-</ul>
-<%= submit_tag("Approve Users")%>
+<%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
+  <ul>
+    <%@users.each do |user| %>
+      <li>
+        <label>Accept <%=user.name%></label>
+        <%=check_box_tag('ids[]', user.id) %>
+      </li>
+    <%end%>
+  </ul>
+  <%= submit_tag("Approve Users")%>
 <% end %>

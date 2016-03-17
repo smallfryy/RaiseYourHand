@@ -22,7 +22,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :name
   validates :password, length: {minimum: 6, maximum: 16}
   validates :password_confirmation, length: {minimum: 6, maximum: 16}
-  #will make custom email validation later
-
-
+  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/groups/:id/memberships', to: 'groups#memberships', as: 'group_membership'
   patch '/groups/:id/users', to: 'groups#approve', as: 'approved_memberships'
   get '/answers/:id/edit', to: 'answers#edit', as: 'edit_answer'
+  get '/answers/:id/destroy', to: 'answers#destroy', as: 'delete_answer'
   resources :users, :tags, :sessions
   resources :groups do 
      resources :questions do 

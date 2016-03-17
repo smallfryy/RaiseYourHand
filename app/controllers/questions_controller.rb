@@ -18,10 +18,10 @@ class QuestionsController < ApplicationController
     @question = @group.questions.build(question_params)
     @question.user =  @user
     if @question.save
-       if params[:tag_name].present?
-         tag = Tag.find_or_create_by(name: params[:tag_name])
-         @question.tags << tag unless @question.tags.include?(tag)
-       end
+      if params[:tag_name].present?
+        tag = Tag.find_or_create_by(name: params[:tag_name])
+        @question.tags << tag unless @question.tags.include?(tag)
+      end
       redirect_to group_question_path(@question.group, @question)
     else
       # binding.pry
@@ -49,13 +49,13 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     @group = @question.group
-     @user = User.find(session[:id])
+    @user = User.find(session[:id])
     @user = @question.user
     if @question.update(question_params)
       if params[:tag_name].present?
          tag = Tag.find_or_create_by(name: params[:tag_name])
          @question.tags << tag unless @question.tags.include?(tag)
-       end
+      end
       redirect_to group_question_path(@question.group, @question)
     else
       render :edit
