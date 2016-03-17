@@ -18,11 +18,14 @@
 <% if current_user %>
   <% if @group.members.include?(current_user) %>
 <!--check if group member, then display this -->
-    <%= link_to "New Question", new_group_question_path(@group) %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to "New Question", new_group_question_path(@group) %><br>
   <% end %>
   <!-- only display request membership if user is not a member or admin -->
   <% unless @group.users.include?(current_user) %>
-    <%= link_to "Request Membership!", group_join_path(@group) %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to "Request Membership!", group_join_path(@group) %><br>
   <% end %>
+<% end %>
+<% if @group.admins.include?(current_user) %>
+  <%= link_to "View Membership Requests", group_membership_path(@group) %><br>
 <% end %>
 <%= link_to "Back", groups_path%><br>

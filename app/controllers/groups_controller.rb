@@ -95,6 +95,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  def users
+    @group = Group.find(params[:id])
+    @users = @group.users
+  end
+
   def approve
     redirect_to @group unless current_user
     @group = Group.find(params[:id])

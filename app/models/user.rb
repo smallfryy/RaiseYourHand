@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   #will make custom email validation later
 
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+
+  def group_status(group)
+    User.joins(:statuses).where('statuses.group_id = ? AND statuses.user_id = ?', group.id, user.id).pluck('statuses.status').first
+  end
 end

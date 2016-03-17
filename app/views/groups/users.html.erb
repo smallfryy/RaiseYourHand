@@ -1,0 +1,13 @@
+<h1> <%= @group.name %> </h1><br>
+<p><%= @group.description %></p><br>
+<p>Group Admins: <%= @group.admins.map{|admin| admin.name}.join(", ") %></p><br>
+<h3>User List:</h3>
+<!-- display questions here by (popularity/create date)-->
+<!-- two divs for answered/unanswered -->
+<ul>
+  <% @users.each do |user| %>
+    <% binding.pry %>
+    <li><%= link_to(user.name << " - " << user.group_stasus(@group), user) %></li>
+  <% end %>
+</ul>
+<%= link_to "Back", groups_path%><br>
