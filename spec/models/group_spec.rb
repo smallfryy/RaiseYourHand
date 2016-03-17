@@ -32,10 +32,8 @@ describe "Group" do
       expect(group3.errors.full_messages).to_not include "Description can't be blank"
   end
 
-  it "is invaid without unique name" do 
-    binding.pry
-      group1 = Group.create(name: "My Amazing Group", description: "My amazing description")
-      
+  it "is invaid without unique name" do
+      group1 = Group.create(name: "My Amazing Group", description: "My amazing description")  
       group2 = Group.create(name: "My Group", description: "My description")
       group3 = Group.create(name: "My Group", description: "My other description")
 
