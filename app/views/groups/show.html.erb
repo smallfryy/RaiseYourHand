@@ -19,6 +19,7 @@
   <% if @group.members.include?(current_user) %>
 <!--check if group member, then display this -->
     <%= link_to "New Question", new_group_question_path(@group) %><br>
+    <%= link_to "View Members", group_users_path(@group) %><br>
   <% end %>
   <!-- only display request membership if user is not a member or admin -->
   <% unless @group.users.include?(current_user) %>
