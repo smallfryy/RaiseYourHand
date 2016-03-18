@@ -33,4 +33,12 @@ class User < ActiveRecord::Base
   def admin_status
     Group.joins(:statuses).joins(:users).where("users.id =?", self.id).where("statuses.status =?", "admin")
   end
+
+  def most_recent_questions
+    self.questions.order('questions.created_at desc').first(5)
+  end
+
+  def most_recent_answers
+    self.answers.order('answers.created_at desc').first(5)
+  end
 end

@@ -7,14 +7,17 @@
       <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
     <% end %>
   </p>
+  <% if @question.user == current_user %>
+    <div class="btn-group">
+      <%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get , class:"btn btn-primary btn-xs"%>
+      <%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete , class:"btn btn-primary btn-xs"%>
+    </div>
+  <% end %>
 </div>
 <div class="horizontalLine"></div>
 <!-- Only display if you have permissions -->
 <div class="list-group">
-  <% if @question.user == current_user %>
-    <span class="list-group-item"><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %></span>
-    <br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
-  <% end %>
+  <span class="list-group-item">
   <% if @answers.present? %>
     <ul>
       <% @answers.each do |answer| %>

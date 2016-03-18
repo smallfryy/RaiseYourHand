@@ -9,11 +9,17 @@
   <li>
     Questions:
     <ul>
+      <% @user.most_recent_questions.each do |question| %>
+        <li><p><%= link_to question.title, group_question_path(question.group, question) %></p></li>
+      <% end %>
     </ul>
   </li>
   <li>
     Answers:
     <ul>
+      <% @user.most_recent_answers.each do |answer| %>
+        <li><p><%= link_to answer.question.title, group_question_path(answer.question.group, answer.question) %></p></li>
+      <% end %>
     </ul>
   </li>
 </ul>

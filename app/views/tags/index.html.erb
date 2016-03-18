@@ -1,5 +1,11 @@
-<ul>
-  <% @tags.each do |tag| %>
-    <li> <%= link_to tag.name, tag %> </li>
-  <% end %>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading"><h1>Tags:</h1></div>
+    <div class="list-group">
+      <ul>
+        <% @tags.each do |tag| %>
+          <li class="list-group-item"><p><%= link_to tag.name, tag %></p></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
