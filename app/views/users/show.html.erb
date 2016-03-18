@@ -5,8 +5,8 @@
     <li>User Name: <%= @user.name %> </li>
     <li>Email: <%= @user.email %></li>
   </ul>
-  <%= button_to "Delete", {controller: :users, action: 'destroy', id: @user.id}, method: :delete %>
-  <%= button_to "Edit", {controller: :users, action: 'edit', id: @user.id}, method: :get %>
+  <%= button_to "Edit", {controller: :users, action: 'edit', id: @user.id}, method: :get , class:"btn btn-primary btn-sm"%><br>
+  <%= button_to "Delete", {controller: :users, action: 'destroy', id: @user.id}, method: :delete, class:"btn btn-primary btn-sm" %>
 <% else %>
   <h1> This isn't your profile! </h1><br>
   <%= link_to "Home", home_path %>

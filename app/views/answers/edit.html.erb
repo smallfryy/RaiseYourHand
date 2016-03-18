@@ -1,6 +1,6 @@
 <h1>Edit Answer</h1>
 <br> <%= form_for [@group, @question, @answer] do |f| %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
+  <%= f.text_area :content %><br>
+  <%= f.submit "Update", class:"btn btn-primary btn-sm"%>
 <% end %>
   
