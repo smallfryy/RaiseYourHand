@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/answers/:id/edit', to: 'answers#edit', as: 'edit_answer'
   get '/answers/:id/destroy', to: 'answers#destroy', as: 'delete_answer'
   get '/users/:id/adminpanel', to: 'users#admin', as: 'admin'
+  get '/stats', to: 'pages#stats', as: 'stats'
   resources :users, :tags, :sessions
   resources :groups do 
      resources :questions do 

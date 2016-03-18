@@ -1,0 +1,11 @@
+<h1>Stats:</h1>
+<ul>
+  <li>Tag Stats:</li>
+  <ul>
+    <li>Tag with most questions: <%= Tag.most_popular_by_questions.name.capitalize %></li>
+    <li>Tag with most answers: <%= Tag.most_answered.name.capitalize if Tag.most_answered%></li>
+    <li>Tag with least answers: <%= Tag.least_answered.name.capitalize if Tag.least_answered%></li>
+    <li>Tag with most users asking questions: <%= Tag.most_popular_by_users.name.capitalize %></li>
+    <li>Most popular tag in the past week: <%= Tag.trending_tag.name.capitalize %></li>
+  </ul>
+</ul>
