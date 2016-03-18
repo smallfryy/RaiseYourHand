@@ -51,4 +51,24 @@ describe "User" do
     expect(user1.errors.full_messages).to include "Email is invalid"
   end
 
+  it "should have many questions" do
+    t = User.reflect_on_association(:questions)
+    expect(t.macro).to equal(:has_many)
+  end
+
+  it "should have many answers" do
+    t = User.reflect_on_association(:answers)
+    expect(t.macro).to equal(:has_many)
+  end
+
+  it "should have many statuses" do
+    t = User.reflect_on_association(:statuses)
+    expect(t.macro).to equal(:has_many)
+  end
+
+  it "should have many groups" do
+    t = User.reflect_on_association(:groups)
+    expect(t.macro).to equal(:has_many)
+  end
+
 end

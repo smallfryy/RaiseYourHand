@@ -1,5 +1,30 @@
+<h1>Stats:</h1>
+<ul>
+  <li>Hands Raised: <%= @user.questions.size %></li>
+  <li>Hi-fives: <%= @user.answers.size %></li>
+  <li>Topic with most questions: </li>
+</ul>
+<h1>Recent Contributions:</h1>
+<ul>
+  <li>
+    Questions:
+    <ul>
+    </ul>
+  </li>
+  <li>
+    Answers:
+    <ul>
+    </ul>
+  </li>
+</ul>
+<h1>Groups:</h1>
+<ul>
+  <% @user.groups.each do |group| %>
+    <li><%=link_to group.name.capitalize, group %></li>
+  <% end %>
+</ul>
 <% if @user == current_user %>
-  <h1><%= @user.name %>:</h1>
+  <h1>Your info:</h1>
   <ul>
     <!-- Only display if user is logged in -->
     <li>User Name: <%= @user.name %> </li>
@@ -7,7 +32,4 @@
   </ul>
   <%= button_to "Edit", {controller: :users, action: 'edit', id: @user.id}, method: :get , class:"btn btn-primary btn-sm"%><br>
   <%= button_to "Delete", {controller: :users, action: 'destroy', id: @user.id}, method: :delete, class:"btn btn-primary btn-sm" %>
-<% else %>
-  <h1> This isn't your profile! </h1><br>
-  <%= link_to "Home", home_path %>
 <% end %>
