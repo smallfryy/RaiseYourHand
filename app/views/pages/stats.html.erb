@@ -8,4 +8,12 @@
     <li>Tag with most users asking questions: <%= Tag.most_popular_by_users.name.capitalize %></li>
     <li>Most popular tag in the past week: <%= Tag.trending_tag.name.capitalize %></li>
   </ul>
+  <li>Group Stats:</li>
+  <ul>
+    <li>Group with most questions: <%= Group.most_popular_by_questions.name.capitalize %></li>
+    <li>Group with most answers: <%= Group.most_answered.name.capitalize if Group.most_answered%></li>
+    <li>Group with least answers: <%= Group.least_answered.name.capitalize if Group.least_answered%></li>
+    <li>Group with most members: <%= Group.biggest.name.capitalize %></li>
+    <li>Most active group in the past week: <%= Group.trending.name.capitalize %></li>
+  </ul>
 </ul>

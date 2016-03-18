@@ -20,7 +20,8 @@ class Question < ActiveRecord::Base
   validates_presence_of :user_id, :group_id, :content, :title
   #accepts_nested_attributes_for :tags, reject_if: :all_blank
   
-  def tag_name
+  def self.by_recent
+    Question.order('questions.created_at desc')
   end
   
 end

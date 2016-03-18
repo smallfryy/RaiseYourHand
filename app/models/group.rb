@@ -28,11 +28,11 @@ class Group < ActiveRecord::Base
     Group.joins(questions: :answers).group("groups.id").order("COUNT(DISTINCT(answers.id)) asc").first
   end
 
-  def self.biggest_group
+  def self.biggest
     Group.joins(:users).group("groups.id").order("COUNT(DISTINCT(users.id)) desc").first
   end
 
-  def self.trending_group
+  def self.trending
     #most popular tag within last week by question
     Group.joins(:questions).where("questions.created_at > ?", DateTime.now - 7).group("groups.id").order("COUNT(questions.id) desc").first
   end
