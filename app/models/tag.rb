@@ -12,12 +12,6 @@ class Tag < ActiveRecord::Base
   has_many :question_tags
   has_many :questions, through: :question_tags
   validates_presence_of :name
-<<<<<<< HEAD
- 
-
-
-
-=======
 
   def most_popular_by_questions
     Tag.joins(:questions).group("tags.id").order("COUNT(questions.id) desc").first
@@ -43,5 +37,4 @@ class Tag < ActiveRecord::Base
   def most_active_user
     User.joins(questions: :tags).where("tags.id = ?", self.id).group("users.id").order("COUNT(questions.id), desc").first
   end
->>>>>>> 7ae08fd4231f06aa8c16ce02b97a055c66f6acc4
 end
