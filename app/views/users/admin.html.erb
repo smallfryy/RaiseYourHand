@@ -1,5 +1,12 @@
 <h1>Hello Admin!</h1>
+<ul>
 <% @groups.each do |group| %>
-  <%= group.name %>
+     <li>
+  <%= link_to group.name, group_path(group) %>
+     <% if group.pending.any? %>
+  <p>This group has <%= group.pending %> pending memberships.<%= link_to "Click here", group_membership_path(group)%> to approve</p>
+     <% end %>
+  </li>
  <!-- make group memberships page a partial and render each membership form here -->
   <% end %>
+  <ul>
