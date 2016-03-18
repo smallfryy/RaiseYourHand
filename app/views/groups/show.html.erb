@@ -1,36 +1,59 @@
-<h1> <%= @group.name.capitalize %> </h1>
-<p><%= @group.description %></p>
-<p>Group Admins: <%= @group.admins.map{|admin| admin.name}.join(", ") %></p>
-<!-- display questions here by (popularity/create date)-->
-<!-- two divs for answered/unanswered -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1> <%= @group.name.capitalize %> </h1>
+    <p><%= @group.description %></p>
+    <p>Group Admins: <%= @group.admins.map{|admin| admin.name}.join(", ") %></p>
+  </div>
+  
 
-<ul>
-  <% @questions.each do |question| %>
-    <li><p>- <%= link_to question.title, group_question_path(@group, question) %></p></li>
-  <% end %>
-</ul>
-<br>
+  <!-- display questions here by (popularity/create date)-->
+  <!-- two divs for answered/unanswered -->
+  <div class="list-group">
+    <ul>
+      <% @questions.each do |question| %>
+        <li class="list-group-item"><p>- <%= link_to question.title, group_question_path(@group, question) %></p></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 <div class="horizontalLine"></div>
-<br>
 <!-- Only display if you have permissions -->
 <% if  current_user && @group.admins.include?(current_user) %>
   <div>
-  <%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get %>
-  <%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete %>
+  <%= button_to "Edit", {controller: :groups, action: 'edit', id: @group.id}, method: :get, class:"btn btn-primary btn-xs" %>
+  <%= button_to "Delete", {controller: :groups, action: 'destroy', id: @group.id}, method: :delete, class:"btn btn-primary btn-xs" %>
+  </div></br>
+<% end %>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-footer">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <% if current_user %>
+          <% if @group.members.include?(current_user) %>
+        <!--check if group member, then display this -->
+            <li><%= link_to "Post Question", new_group_question_path(@group) %></li>
+            <li><%= link_to "View Members", group_users_path(@group) %></li>
+          <% end %>
+          <!-- only display request membership if user is not a member or admin -->
+          <% unless @group.users.include?(current_user) %>
+            <li><%= link_to "Request To Join", group_join_path(@group) %></li>
+          <% end %>
+        <% end %>
+        <% if @group.admins.include?(current_user) %>
+          <li><%= link_to "View Membership Requests", group_membership_path(@group) %></li>
+        <% end %>
+        <li><%= link_to "Back", groups_path%></li>
+      </ul>
+    </div>
   </div>
-<% end %>
-<% if current_user %>
-  <% if @group.members.include?(current_user) %>
-<!--check if group member, then display this -->
-    <%= link_to "New Question", new_group_question_path(@group) %><br>
-    <%= link_to "View Members", group_users_path(@group) %><br>
-  <% end %>
-  <!-- only display request membership if user is not a member or admin -->
-  <% unless @group.users.include?(current_user) %>
-    <%= link_to "Request To Join", group_join_path(@group) %><br>
-  <% end %>
-<% end %>
-<% if @group.admins.include?(current_user) %>
-  <%= link_to "View Membership Requests", group_membership_path(@group) %><br>
-<% end %>
-<%= link_to "Back", groups_path%><br>
+</nav>

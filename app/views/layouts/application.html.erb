@@ -25,13 +25,11 @@
         <li><%= link_to "Home", home_path %> </li>
         <li><%= link_to "Browse Groups", groups_path%></li>
         <%if current_user %>
-            
-            <li><%= link_to "Register Group", new_group_path %></li>
-            <li><%= link_to "Log Out",logout_path %></li>
+          <li><%= link_to "Register Group", new_group_path %></li>
+          <li><%= link_to "Log Out",logout_path %></li>
         <% else %>
-           <li><%= link_to "Home", home_path %></li>
-           <li><%= link_to "Sign Up", signup_path %></li>
-           <li><%= link_to "Log In", login_path %></li>
+         <li><%= link_to "Sign Up", signup_path %></li>
+         <li><%= link_to "Log In", login_path %></li>
         <% end %>
 
       </ul>
@@ -42,8 +40,9 @@
   </div>
 </nav>
 
-
+<div class="container-fluid">
 <%= yield %>
+</div>
 
 </body>
 </html>
