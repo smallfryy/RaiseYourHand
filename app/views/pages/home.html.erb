@@ -1,5 +1,12 @@
+<div class="jumbotron vertical-center">
+  <div class="container">
+  <h1>Raise Your Hand</h1>
+  <h3>A peer-moderated Q&A app for your next study group.</h3>
+  <h4>Find your answer <i>here</i></h4>
+  <%if @current_user == @user%>
 
-<h3>A question and answer platform for your class/study group. Peer moderated and user friendly, you will find your answer here!</h3>
-<%if @current_user == @user%>
-  <h3><%=link_to "View Class List", groups_path %></h3>
+  <p><a class="btn-primary btn-lg" role="button"><h3><%=link_to "View Groups", groups_path %></h3></a></p>
 <% end %>
+</div>
+</div>
+
