@@ -1,10 +1,13 @@
-<h1><%= @question.title %></h1>
-<p><%= @question.content %></p>
-<p>Tags: 
-  <% @question.tags.each do |tag| %>
-    <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
-  <% end %>
-</p>
+<div class="panel panel-default">
+<div class="panel-heading">
+  <h1><%= @question.title %></h1>
+    <p><%= @question.content %></p>
+  <p>Tags: 
+    <% @question.tags.each do |tag| %>
+      <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
+    <% end %>
+  </p>
+</div>
 <div class="horizontalLine"></div>
 <!-- Only display if you have permissions -->
 <% if @question.user == current_user %>
@@ -33,4 +36,5 @@
 <% end %>
 
 <br><%= link_to "Group Page", @question.group %>
+</div>
 

@@ -11,7 +11,7 @@
   <div class="list-group">
     <ul>
       <% @questions.each do |question| %>
-        <li class="list-group-item"><p>- <%= link_to question.title, group_question_path(@group, question) %></p></li>
+        <li class="list-group-item"><p><%= link_to question.title, group_question_path(@group, question) %></p></li>
       <% end %>
     </ul>
   </div>
