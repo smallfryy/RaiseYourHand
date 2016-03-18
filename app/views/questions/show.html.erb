@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 <div class="panel-heading">
   <h1><%= @question.title %></h1>
-    <p><%= @question.content %></p>
+    <h3><%= @question.content %></h3>
   <p>Tags: 
     <% @question.tags.each do |tag| %>
       <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
@@ -18,7 +18,7 @@
   <% if @answers.present? %>
     <ul>
       <% @answers.each do |answer| %>
-        <li><%= answer.content %> </li>
+        <li><h5><%= answer.content %></h5></li>
         <% if answer.user == current_user %>
           <p><%= link_to"Edit", edit_answer_path(answer.id)%>&nbsp;&nbsp;
           <%= link_to"Delete", delete_answer_path(answer.id)%></p>
@@ -35,6 +35,5 @@
   <% end %>
   </div>
 </div>
-
-<br><%= link_to "Group Page", @question.group %>
+<%= link_to "Group Page", @question.group %>
 
