@@ -35,7 +35,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li><a>Logged in as <%= current_user.name%></a></li>
+          <li><%= link_to("Logged in as " << current_user.name, current_user)%></li>
         <% end %>
       </ul>
     </div>
