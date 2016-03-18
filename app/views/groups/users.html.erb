@@ -9,4 +9,4 @@
     <li><%= link_to(user.name << " - " << user.group_status(@group), user) %></li>
   <% end %>
 </ul>
-<%= link_to "Back", groups_path%><br>
+<%= link_to "Back", group_path(@group)%><br>

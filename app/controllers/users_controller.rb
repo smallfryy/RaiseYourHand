@@ -52,6 +52,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user && @user.admin_status.present?
       @groups = @user.admin_status
+      
       render :admin
     end
   end

@@ -1,12 +1,25 @@
 <h1>Hello Admin!</h1>
-<ul>
+<h2>Your Groups </h2>
 <% @groups.each do |group| %>
-    <li>
-      <%= link_to group.name, group_path(group) %>
-      <% if group.pending.any? %>
-        <p>This group has <%= group.pending.count %> pending memberships.<%= link_to "Click here", group_membership_path(group)%> to approve</p>
-      <% end %>
-    </li>
- <!-- make group memberships page a partial and render each membership form here -->
-<% end %>
+ <%= link_to group.name, group_path(group) %><br>
+ <% end %>
+  <ul>
+  <h2>Pending Memberships </h2>
+  <% @groups.each do |group| %>
+      <%if group.pending.any? %>
+       <li> <h3> <%=group.name%> </h3>
+          <%=form_tag("/groups/#{group.id}/users", method: "patch") do %>
+          <ul>
+          <%group.pending.each do |user| %>
+            <li>
+            <label>Accept <%=user.name%></label>
+            <%=check_box_tag('ids[]', user.id) %>
+            </li>
+          <%end%>
+          </ul>
+    <%= submit_tag("Approve Users")%>
+       <% end %>
+      </li>
+  <% end %>
+  <% end %>
 <ul>
