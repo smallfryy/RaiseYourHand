@@ -10,31 +10,31 @@
 </div>
 <div class="horizontalLine"></div>
 <!-- Only display if you have permissions -->
-<% if @question.user == current_user %>
-  <br><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %>
-  <br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
-<% end %>
-<% if @group.members.include?(current_user) %>
-  <br> <%= form_for [@group, @question, @answer] do |f| %>
-    <%= f.text_area :content %>
-    <%= f.submit %>
+<div class="list-group">
+  <% if @question.user == current_user %>
+    <span class="list-group-item"><%= button_to "Delete", {controller: :questions, action: 'destroy', id: @question.id}, method: :delete %></span>
+    <br><%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get %>
   <% end %>
-<% end %>
-
-<% if @answers.present? %>
-  <h1>Answers!</h1>
-  <ul>
-    <% @answers.each do |answer| %>
-      <li><%= answer.content %> </li>
-      <% if answer.user == current_user %>
-        <p><%= link_to"Edit", edit_answer_path(answer.id)%>&nbsp;&nbsp;
-        <%= link_to"Delete", delete_answer_path(answer.id)%></p>
+  <% if @answers.present? %>
+    <ul>
+      <% @answers.each do |answer| %>
+        <li><%= answer.content %> </li>
+        <% if answer.user == current_user %>
+          <p><%= link_to"Edit", edit_answer_path(answer.id)%>&nbsp;&nbsp;
+          <%= link_to"Delete", delete_answer_path(answer.id)%></p>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
-  <div class="horizontalLine"></div>
-<% end %>
+    </ul>
+    <div class="horizontalLine"></div>
+  <% end %>
+  <% if @group.members.include?(current_user) %>
+    <span class="list-group-item"><%= form_for [@group, @question, @answer] do |f| %>
+      <%= f.text_area :content %><br>
+      <%= f.submit "Post Answer", class:"btn btn-primary btn-sm"%>
+    <% end %></span>
+  <% end %>
+  </div>
+</div>
 
 <br><%= link_to "Group Page", @question.group %>
-</div>
 
