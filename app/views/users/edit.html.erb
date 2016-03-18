@@ -3,6 +3,6 @@
   <h1> Edit your account: </h1>
   <%= render partial:'form', locals:{user: @user, edit: true} %>
 <% else %>
-  <h2>You dont have permission to edit another user's profile! Naughty, naughty!!!</h2> <br>
+  <h2>You do not have permission to edit another user's profile. Naughty, naughty!</h2> <br>
   <%= link_to "Go Back", users_path %>
 <% end %>

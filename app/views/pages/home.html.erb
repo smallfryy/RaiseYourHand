@@ -1,12 +1,34 @@
 <div class="jumbotron vertical-center">
   <div class="container">
   <h1>Raise Your Hand</h1>
-  <h3>A peer-moderated Q&A app for your next study group.</h3>
-  <h4>Find your answer <i>here</i></h4>
+  <h2>A peer-moderated Q&A app for your next study group.</h2>
+  <h4>Find your answer <b><i>here.</b></i></h4>
   <%if @current_user == @user%>
+  <br>
+  <p><%=link_to "View Groups", groups_path, class:"btn btn-primary btn-md" %></a>
+  <% end %>
 
-  <p><a class="btn-primary btn-lg" role="button"><h3><%=link_to "View Groups", groups_path %></h3></a></p>
-<% end %>
+  <% if !current_user %>
+     <div class="row">
+        <h3>Login</h3>
+        <%= form_tag sessions_path do %>
+          <div class="field">
+            <%= label_tag :email %> <br>
+            <%= text_field_tag :email, params[:email] %>
+          </div>
+          <div class="field">
+            <%= label_tag :password %> <br>
+            <%= password_field_tag :password %>
+          </div>
+          <br>
+          <div class="actions">
+            <%=submit_tag "Log In", class:"btn btn-primary btn-sm"%> 
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+  </div>
+
 </div>
 </div>
 
