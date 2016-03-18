@@ -4964,11 +4964,11 @@ a.badge:focus {
   margin-left: 3px;
 }
 .jumbotron {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #ffcccc;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4990,18 +4990,19 @@ a.badge:focus {
 }
 .jumbotron .container {
   max-width: 100%;
+
 }
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
-
+  min-height: 86vh; /* These two lines are counted as one :-)       */
+  background-image: ("space.jpg");
   display: flex;
   align-items: center;
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   .container .jumbotron,
   .container-fluid .jumbotron {
