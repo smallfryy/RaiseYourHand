@@ -29,4 +29,3 @@
   <%= button_to "Edit", {controller: :users, action: 'edit', id: @user.id}, method: :get , class:"btn btn-primary btn-sm"%><br>
   <%= button_to "Delete", {controller: :users, action: 'destroy', id: @user.id}, method: :delete, class:"btn btn-primary btn-sm" %>
 <% end %>
-<%= link_to "Home", home_path %>
