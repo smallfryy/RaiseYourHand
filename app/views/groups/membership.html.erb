@@ -5,14 +5,14 @@
       <li>Average questions per user: <%= @group.question_to_user_ratio %></li>
       <li>Users with most questions in the past week: </li>
         <ol>
-          <% @group.users_w_most_questions.first(5).each do |user_id| %>
-             <li><%= link_to(User.find(user_id).name, user_path(user_id))%></li>
+          <% @group.users_w_most_questions.first(5).each do |user_info| %>
+             <li><%= link_to(User.find(user_info[0]).name << " - " << user_info[1].to_s, user_path(user_info[0]))%></li>
           <% end %>
         </ol>
       <li>Users with most answers in the past week: </li>
         <ol>
-          <% @group.users_w_most_answers.first(5).each do |user_id| %>
-             <li><%= link_to(User.find(user_id).name, user_path(user_id))%></li>
+          <% @group.users_w_most_answers.first(5).each do |user_info| %>
+             <li><%= link_to(User.find(user_info[0]).name << " - " << user_info[1].to_s, user_path(user_info[0]))%></li>
           <% end %>
         </ol>
     </ul>

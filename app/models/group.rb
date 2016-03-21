@@ -63,11 +63,11 @@ class Group < ActiveRecord::Base
   end
 
   def users_w_most_questions
-    self.questions.where("questions.created_at > ?", DateTime.now - 3).group("questions.user_id").order("COUNT(questions.id) desc").pluck("questions.user_id")
+    self.questions.where("questions.created_at > ?", DateTime.now - 3).group("questions.user_id").order("COUNT(questions.id) desc").pluck("questions.user_id, COUNT(questions.id)")
   end
 
   def users_w_most_answers
-    self.questions.joins(:answers).group("answers.user_id").order("COUNT(answers.id) desc").pluck('answers.user_id')
+    self.questions.joins(:answers).group("answers.user_id").order("COUNT(answers.id) desc").pluck('answers.user_id, COUNT(answers.id)')
   end
 
   def recent_popular_tags
