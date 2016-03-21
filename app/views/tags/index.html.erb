@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading text-center"><h1>Tags</h1></div>
     <div class="list-group">
-      <ul>
+      <br><ul>
         <% @tags.sort{ |a,b| a.name.downcase <=> b.name.downcase }.each do |tag| %>
           <li class="list-group-item"><p><%= link_to tag.name.capitalize, tag %></p></li>
         <% end %>
@@ -9,3 +9,5 @@
     </div>
   </div>
 </div>
+
+<%= will_paginate @tags %>

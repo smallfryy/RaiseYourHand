@@ -1,4 +1,4 @@
-<h1> <%= @tag.name %> </h1>
+<br><h1> <%= @tag.name %> </h1>
 <ul>
   <% @questions.each do |question| %>
     <li><%= link_to question.title, group_question_path(question.group, question) %></li>
