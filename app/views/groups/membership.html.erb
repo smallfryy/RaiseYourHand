@@ -11,7 +11,7 @@
     <%end%>
   </ul>
   <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
-<% end %>
+<% end %><br><br>
 
 <div class="jumbotron">
       <div class="row text-center">
@@ -23,11 +23,9 @@
 
 <div class="jumbotron">
       <div class="row text-center">
-  <li>Popular Tags in the Past 3 Days</li>
-    <%= pie_chart(@group.recent_popular_tags.to_h) %>
-  <li>Activity</li>
+  <h2>Activity</h2>
     <%= line_chart @group.questions.group("date(questions.created_at)").count %>
-</ul>
+  </ul>
 </div>
 </div>
 
