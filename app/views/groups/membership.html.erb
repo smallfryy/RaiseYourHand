@@ -1,3 +1,35 @@
+<h1>Group Admin Panel</h1>
+<ul>
+  <li>Stats</li>
+    <ul>
+      <li>Average questions per user: <%= @group.question_to_user_ratio %></li>
+      <li>Users with most questions in the past week: </li>
+        <ol>
+          <% @group.users_w_most_questions.first(5).each do |user_id| %>
+             <li><%= link_to(User.find(user_id).name, user_path(user_id))%></li>
+          <% end %>
+        </ol>
+      <li>Users with most answers in the past week: </li>
+        <ol>
+          <% @group.users_w_most_answers.first(5).each do |user_id| %>
+             <li><%= link_to(User.find(user_id).name, user_path(user_id))%></li>
+          <% end %>
+        </ol>
+    </ul>
+  <li>Recent Questions</li>
+    <ul>
+      <% @group.recent_questions.each do |question|%>
+        <li><%= link_to(question.title, group_question_path(@group, question))%></li>
+      <% end %>
+    </ul>
+  <li>Popular Tags in the Past 3 Days</li>
+  <ol>
+    <% @group.recent_popular_tags.each do |tag_id|%>
+      <li><%= Tag.find(tag_id).name %></li>
+    <% end %>
+  </ol>
+</ul>
+
 <h1>Pending Memberships</h1>
 <%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
   <ul>
@@ -8,5 +40,5 @@
       </li>
     <%end%>
   </ul>
-  <%= submit_tag("Approve Users")%>
+  <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
 <% end %>
