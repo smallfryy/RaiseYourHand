@@ -18,19 +18,19 @@
 
 
 <div class="jumbotron">
-      <div class="row text-center">
-        <h2>Most Popular Tags in the Past 3 Days</h2><br>
-          <%= pie_chart(@group.recent_popular_tags.to_h) %>
-        </ul>
-      </div>
+  <div class="row text-center">
+    <h2>Most Popular Tags in the Past 3 Days</h2><br>
+      <%= pie_chart(@group.recent_popular_tags.to_h) %>
+      </ul>
     </div>
+  </div>
 
 <div class="jumbotron">
   <div class="row text-center">
-  <h2>Activity</h2><br>
+    <h2>Activity</h2><br>
     <%= line_chart @group.questions.group("date(questions.created_at)").count %>
-  </ul>
-</div>
+    </ul>
+  </div>
 </div>
 
 <div class="row text-center">
