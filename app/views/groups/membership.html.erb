@@ -1,6 +1,8 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <h1>Group Admin Panel</h1>
-<h2>Pending Memberships</h2>
+<<<<<<< HEAD
+<%if @group.pending.any? %>
+<h1>Pending Memberships</h1>
 <%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
   <ul>
     <%@users.each do |user| %>
@@ -11,7 +13,12 @@
     <%end%>
   </ul>
   <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
+<<<<<<< HEAD
+<% end %>
+<% end %>
+
 <% end %><br><br>
+
 
 <div class="jumbotron">
   <div class="row text-center">
