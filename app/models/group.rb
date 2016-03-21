@@ -71,7 +71,7 @@ class Group < ActiveRecord::Base
   end
 
   def recent_popular_tags
-    self.recent_questions.joins(:tags).group('tags.id').order("COUNT(questions.id) desc").pluck('tags.id')
+    self.recent_questions.joins(:tags).group('tags.id').order("COUNT(questions.id) desc").pluck('tags.name, COUNT(questions.id)')
   end
 
   def question_to_user_ratio
