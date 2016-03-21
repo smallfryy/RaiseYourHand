@@ -12,6 +12,25 @@
   </ul>
   <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
 <% end %>
+
+<div class="jumbotron">
+      <div class="row text-center">
+        <h2>Most Popular Tags in the Past 3 Days</h2><br>
+          <%= pie_chart(@group.recent_popular_tags.to_h) %>
+        </ul>
+      </div>
+    </div>
+
+<div class="jumbotron">
+      <div class="row text-center">
+  <li>Popular Tags in the Past 3 Days</li>
+    <%= pie_chart(@group.recent_popular_tags.to_h) %>
+  <li>Activity</li>
+    <%= line_chart @group.questions.group("date(questions.created_at)").count %>
+</ul>
+</div>
+</div>
+
 <ul>
   <li>Stats</li>
     <ul>
@@ -36,30 +55,3 @@
       <% end %>
     </ul>
     <br>
-      <div class="jumbotron">
-        <div class="row text-center">
-        <h2>Most Popular Tags in the Past 3 Days</h2><br>
-          <%= pie_chart(@group.recent_popular_tags.to_h) %>
-        </ul>
-      </div>
-    </div>
-
-  <li>Popular Tags in the Past 3 Days</li>
-    <%= pie_chart(@group.recent_popular_tags.to_h) %>
-  <li>Activity</li>
-    <%= line_chart @group.questions.group("date(questions.created_at)").count %>
-</ul>
-
-<h1>Pending Memberships</h1>
-<%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
-  <ul>
-    <%@users.each do |user| %>
-      <li>
-        <label>Accept <%=user.name%></label>
-        <%=check_box_tag('ids[]', user.id) %>
-      </li>
-    <%end%>
-  </ul>
-  <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
-<% end %>
-
