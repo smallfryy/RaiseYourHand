@@ -1,5 +1,17 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <h1>Group Admin Panel</h1>
+<h1>Pending Memberships</h1>
+<%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
+  <ul>
+    <%@users.each do |user| %>
+      <li>
+        <label>Accept <%=user.name%></label>
+        <%=check_box_tag('ids[]', user.id) %>
+      </li>
+    <%end%>
+  </ul>
+  <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
+<% end %>
 <ul>
   <li>Stats</li>
     <ul>
@@ -23,19 +35,11 @@
         <li><%= link_to(question.title, group_question_path(@group, question))%></li>
       <% end %>
     </ul>
-  <li>Popular Tags in the Past 3 Days</li>
-    <%= pie_chart(@group.recent_popular_tags.to_h) %>
-</ul>
-
-<h1>Pending Memberships</h1>
-<%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
-  <ul>
-    <%@users.each do |user| %>
-      <li>
-        <label>Accept <%=user.name%></label>
-        <%=check_box_tag('ids[]', user.id) %>
-      </li>
-    <%end%>
-  </ul>
-  <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
-<% end %>
+    <br>
+      <div class="jumbotron">
+        <div class="row text-center">
+        <h2>Most Popular Tags in the Past 3 Days</h2><br>
+          <%= pie_chart(@group.recent_popular_tags.to_h) %>
+        </ul>
+      </div>
+    </div>

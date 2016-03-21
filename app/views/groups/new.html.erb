@@ -1,5 +1,7 @@
+<br><br><br><br><br>
 
-  <h1> Raise Your Hand Group Registration: </h1>
+<div class="row text-center">
+  <h1> Group Registration: </h1>
   <% if @group.errors.any? %>
     <ul>
       <% @group.errors.full_messages.each do |msg| %>
@@ -12,7 +14,10 @@
       <%= f.label :name %><br>
       <%= f.text_field :name %><br><br>
       <%= f.label :description %><br>
-      <%= f.text_area :description %><br>
+      <%= f.text_area :description %><br><br>
       <%= f.submit "Create Group", class:"btn btn-primary btn-sm"%>
     <% end %>
+    </div>
+   
+
 

@@ -4,21 +4,21 @@
     <div class="list-group">
       <ul>
         <ul>
-          <li class="list-group-item">Tag Stats:</li>
-          <ul>
+          <li class="list-group-item"><b><br>Tag Statistics</b></li>
+          <br><ul>
             <li><p>Tag with most questions: <%= Tag.most_popular_by_questions.name.capitalize %></p></li>
             <li><p>Tag with most answers: <%= Tag.most_answered.name.capitalize if Tag.most_answered%></p></li>
             <li><p>Tag with least answers: <%= Tag.least_answered.name.capitalize if Tag.least_answered%></p></li>
             <li><p>Tag with most users asking questions: <%= Tag.most_popular_by_users.name.capitalize %></p></li>
             <li><p>Most popular tag in the past week: <%= Tag.trending_tag.name.capitalize %></p></li>
-          </ul>
-          <li class="list-group-item">Group Stats:</li>
-          <ul>
+          </ul><br>
+          <li class="list-group-item"><b><br>Group Statistics</b><br></li>
+          <br><ul>
             <li><p>Group with most questions: <%= Group.most_popular_by_questions.name.capitalize %></p></li>
             <li><p>Group with most answers: <%= Group.most_answered.name.capitalize if Group.most_answered%></p></li>
             <li><p>Group with least answers: <%= Group.least_answered.name.capitalize if Group.least_answered%></p></li>
             <li><p>Group with most members: <%= Group.biggest.name.capitalize %></p></li>
-            <li><p>Most active group in the past week: <%= Group.trending.name.capitalize %></p></li>
+            <li><p>Most active group in the past week: <%= Group.trending.name.capitalize %></p></li><br>
           </ul>
         </ul>
         <div class="jumbotron">
