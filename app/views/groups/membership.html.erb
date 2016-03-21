@@ -1,6 +1,6 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <h1>Group Admin Panel</h1>
-<h1>Pending Memberships</h1>
+<h2>Pending Memberships</h2>
 <%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
   <ul>
     <%@users.each do |user| %>
@@ -22,15 +22,17 @@
     </div>
 
 <div class="jumbotron">
-      <div class="row text-center">
-  <h2>Activity</h2>
+  <div class="row text-center">
+  <h2>Activity</h2><br>
     <%= line_chart @group.questions.group("date(questions.created_at)").count %>
   </ul>
 </div>
 </div>
 
 <ul>
-  <li>Stats</li>
+<div class="row text-center">
+  <h2>Stats</h2>
+  </div>
     <ul>
       <li>Average questions per user: <%= @group.question_to_user_ratio %></li>
       <li>Users with most questions in the past week: </li>
