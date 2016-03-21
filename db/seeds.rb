@@ -41,5 +41,11 @@ require 'faker'
         end
         question.save
       end
+      3.times do 
+        q = Group.all.last.questions.sample
+        u = Group.all.last.users.sample
+        answer = Answer.create(question_id: q.id, user_id: u.id, content: Faker::Lorem.paragraph)
+        q.answers << answer
+      end
     end
   end
