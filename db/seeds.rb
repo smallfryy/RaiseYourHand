@@ -32,8 +32,10 @@ require 'faker'
     Group.all.last.statuses << status
     5.times do
       user_id = Faker::Number.between(from = 1, to = 20)
-      status = Status.create(user_id: user_id, group_id: Group.all.last.id, status: "member")
-      Group.all.last.statuses << status
+      unless(Group.all.last.users.map{|user| user.id}.include?(user_id))
+        status = Status.create(user_id: user_id, group_id: Group.all.last.id, status: "member")
+        Group.all.last.statuses << status
+      end
       3.times do
         question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Group.all.last.id, user_id: User.all.last.id)
         Faker::Number.between(from = 1, to = 4).times do
