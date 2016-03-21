@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #  title      :string
 #
-
+  
 class QuestionsController < ApplicationController
   before_filter :authorize, only: [:edit, :update]
 
@@ -55,8 +55,7 @@ class QuestionsController < ApplicationController
   def edit
     @question = Question.find(params[:id])
     @group = @question.group
-    @user = User.find(session[:id])
-    @user = @question.user
+    @user = current_user
   end
 
   def update

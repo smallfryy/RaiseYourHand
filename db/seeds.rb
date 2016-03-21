@@ -37,7 +37,7 @@ require 'faker'
         Group.all.last.statuses << status
       end
       3.times do
-        question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Group.all.last.id, user_id: User.all.last.id)
+        question = Question.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, group_id: Group.all.last.id, user_id: User.all.last.id, created_at: DateTime.now - Faker::Number.between(from = 1, to = 20))
         Faker::Number.between(from = 1, to = 4).times do
           question.tags << Tag.find(Faker::Number.between(from = 1, to = 10))
         end
