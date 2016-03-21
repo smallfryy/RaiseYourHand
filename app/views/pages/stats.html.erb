@@ -1,6 +1,19 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <div class="panel panel-default">
   <div class="panel-heading text-center"><h1><b>Group Analytics</b></h1></div>
+    <div class="jumbotron">
+          <div class="row text-center">
+          <h2><b> Group Memberships </b></h2><br>
+              <%= pie_chart Group.joins(:users).group('groups.name').count %>
+            </div>
+          </div>
+        <div class="jumbotron">
+        <div class="row text-center">
+            <h2> Most Active Group by Questions </h2>
+            <%= column_chart Group.joins(:questions).group('groups.name').count %>
+            </div>
+          </div>
+
     <div class="list-group">
       <ul>
         <ul>
@@ -21,21 +34,6 @@
             <li><p>Most active group in the past week: <%= Group.trending.name.capitalize %></p></li><br>
           </ul>
         </ul>
-        <div class="jumbotron">
-        <div class="row text-center">
-          <h2><b> Group Memberships </b></h2><br>
-              <%= pie_chart Group.joins(:users).group('groups.name').count %>
-            </div>
-          </div>
-        </div>
-        <div class="jumbotron">
-        <div class="row text-center">
-            <h2> Most Active Group by Questions </h2>
-            <div class="container">
-            <%= column_chart Group.joins(:questions).group('groups.name').count %>
-         
-            </div>
-          </div>
         </div>
     </div>
   </div>
