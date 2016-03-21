@@ -58,5 +58,23 @@ class Group < ActiveRecord::Base
     users.where("statuses.status = ?", "pending")
   end
 
+  def recent_questions
+    self.questions.where("questions.created_at > ?", DateTime.now - 3).order("questions.created_at desc")
+  end
 
+  def users_w_most_questions
+    self.questions.where("questions.created_at > ?", DateTime.now - 3).group("questions.user_id").order("COUNT(questions.id) desc").pluck("questions.user_id")
+  end
+
+  def users_w_most_answers
+    self.questions.joins(:answers).group("answers.user_id").order("COUNT(answers.id) desc").pluck('answers.user_id')
+  end
+
+  def recent_popular_tags
+    self.recent_questions.joins(:tags).group('tags.id').order("COUNT(questions.id) desc").pluck('tags.id')
+  end
+
+  def question_to_user_ratio
+    self.questions.size*1.0/self.users.size
+  end
 end

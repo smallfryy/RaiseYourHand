@@ -50,7 +50,7 @@
           <% end %>
         <% end %>
         <% if @group.admins.include?(current_user) %>
-          <li><%= link_to "View Membership Requests", group_membership_path(@group) %></li>
+          <li><%= link_to "Admin Panel", group_membership_path(@group) %></li>
         <% end %>
         <li><%= link_to "Back", groups_path%></li>
       </ul>
