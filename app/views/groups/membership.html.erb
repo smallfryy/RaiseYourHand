@@ -1,20 +1,17 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <h1>Group Admin Panel</h1>
-<<<<<<< HEAD
 <%if @group.pending.any? %>
-<h1>Pending Memberships</h1>
-<%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
-  <ul>
-    <%@users.each do |user| %>
-      <li>
-        <label>Accept <%=user.name%></label>
-        <%=check_box_tag('ids[]', user.id) %>
-      </li>
-    <%end%>
-  </ul>
-  <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
-<<<<<<< HEAD
-<% end %>
+  <h1>Pending Memberships</h1>
+  <%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
+    <ul>
+      <%@users.each do |user| %>
+        <li>
+          <label>Accept <%=user.name%></label>
+          <%=check_box_tag('ids[]', user.id) %>
+        </li>
+      <%end%>
+    </ul>
+    <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
 <% end %>
 
 <% end %><br><br>
@@ -36,10 +33,9 @@
 </div>
 </div>
 
-<ul>
 <div class="row text-center">
   <h2>Stats</h2>
-  </div>
+</div>
     <ul>
       <li>Average questions per user: <%= @group.question_to_user_ratio %></li>
       <li>Users with most questions in the past week: </li>
@@ -55,7 +51,9 @@
           <% end %>
         </ol>
     </ul>
-  <li>Recent Questions</li>
+<div class="row text-center">
+  <h2>Recent Questions</h2>
+</div>
     <ul>
       <% @group.recent_questions.each do |question|%>
         <li><%= link_to(question.title, group_question_path(@group, question))%></li>

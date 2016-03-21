@@ -32,8 +32,7 @@
         <div class="row text-center">
             <h2> Most Active Group by Questions </h2>
             <div class="container">
-            <%= column_chart Group.joins(:questions).group('groups.name').count %>
-         
+              <%= column_chart Group.joins(:questions).group('groups.name').count %>
             </div>
           </div>
         </div>
