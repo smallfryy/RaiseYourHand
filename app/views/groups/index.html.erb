@@ -3,8 +3,8 @@
   <div class="panel-heading text-center"><h1>Groups</h1></div>
     <div class="list-group">
     <ul>
-      <% @groups.each do |group| %>
-        <li class="list-group-item"><p><%= link_to(group.name, group) << " - " << group.description%></p></li>
+      <% @groups.sort{ |a,b| a.name.downcase <=> b.name.downcase }.each do |group| %>
+        <li class="list-group-item"><p><%= link_to(group.name.capitalize, group) << " - " << group.description%></p></li>
       <% end %>
     </ul>
     </div>
