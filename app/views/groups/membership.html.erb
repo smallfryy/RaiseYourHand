@@ -25,6 +25,8 @@
     </ul>
   <li>Popular Tags in the Past 3 Days</li>
     <%= pie_chart(@group.recent_popular_tags.to_h) %>
+  <li>Activity</li>
+    <%= line_chart @group.questions.group("date(questions.created_at)").count %>
 </ul>
 
 <h1>Pending Memberships</h1>
