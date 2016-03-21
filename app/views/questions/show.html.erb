@@ -7,6 +7,7 @@
       <%= link_to(tag.name, tag)%>&nbsp;&nbsp;&nbsp;
     <% end %>
   </p>
+  <p>Hand raised by: <%= link_to @question.user.name, user_path(@question.user)%></p>
   <% if @question.user == current_user %>
     <div class="btn-group">
       <%= button_to "Edit", {controller: :questions, action: 'edit', id: @question.id}, method: :get , class:"btn btn-primary btn-xs"%>
@@ -19,15 +20,22 @@
 <div class="list-group">
   <span class="list-group-item">
   <% if @answers.present? %>
-    <ul>
+
       <% @answers.each do |answer| %>
-        <li><h5><%= answer.content %></h5></li>
+      <div class="panel panel-default">
+        <div class="panel-body">
+           <h5><%= answer.content %></h5>
+        <p class="user-name">High-fived By: <%=link_to answer.user.name, user_path(answer.user)%> <br>
         <% if answer.user == current_user %>
-          <p><%= link_to"Edit", edit_answer_path(answer.id)%>&nbsp;&nbsp;
-          <%= link_to"Delete", delete_answer_path(answer.id)%></p>
+          <%= link_to"Edit", edit_answer_path(answer.id)%> |
+          <%= link_to"Delete", delete_answer_path(answer.id)%>
         <% end %>
+          </p>
+        </div>
+      </div>
+
       <% end %>
-    </ul>
+ 
     <div class="horizontalLine"></div>
   <% end %>
   <% if @group.members.include?(current_user) %>
