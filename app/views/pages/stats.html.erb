@@ -1,6 +1,6 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <div class="panel panel-default">
-  <div class="panel-heading"><h1>Stats:</h1></div>
+  <div class="panel-heading text-center"><h1><b>Group Analytics</b></h1></div>
     <div class="list-group">
       <ul>
         <ul>
@@ -21,14 +21,12 @@
             <li><p>Most active group in the past week: <%= Group.trending.name.capitalize %></p></li>
           </ul>
         </ul>
-        <div class="row-fluid">
-          <div class="span12">
-            <h2> Group Memberships </h2>
-            <div class="container">
+        <div class="jumbotron">
+        <div class="row text-center">
+          <h2><b> Group Memberships </b></h2><br>
               <%= pie_chart Group.joins(:users).group('groups.name').count %>
             </div>
           </div>
         </div>
     </div>
   </div>
-</div>
