@@ -1,5 +1,6 @@
 <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <h1>Group Admin Panel</h1>
+<<<<<<< HEAD
 <%if @group.pending.any? %>
 <h1>Pending Memberships</h1>
 <%=form_tag("/groups/#{@group.id}/users", method: "patch") do %>
@@ -12,8 +13,12 @@
     <%end%>
   </ul>
   <%= submit_tag "Approve Users", class:"btn btn-primary btn-sm"%>
+<<<<<<< HEAD
 <% end %>
 <% end %>
+
+<% end %><br><br>
+
 
 <div class="jumbotron">
       <div class="row text-center">
@@ -24,17 +29,17 @@
     </div>
 
 <div class="jumbotron">
-      <div class="row text-center">
-  <li>Popular Tags in the Past 3 Days</li>
-    <%= pie_chart(@group.recent_popular_tags.to_h) %>
-  <li>Activity</li>
+  <div class="row text-center">
+  <h2>Activity</h2><br>
     <%= line_chart @group.questions.group("date(questions.created_at)").count %>
-</ul>
+  </ul>
 </div>
 </div>
 
 <ul>
-  <li>Stats</li>
+<div class="row text-center">
+  <h2>Stats</h2>
+  </div>
     <ul>
       <li>Average questions per user: <%= @group.question_to_user_ratio %></li>
       <li>Users with most questions in the past week: </li>
