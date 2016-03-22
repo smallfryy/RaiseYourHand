@@ -45,7 +45,7 @@ class Group < ActiveRecord::Base
     User.joins(:statuses).where("statuses.group_id = ?", self.id).where("statuses.status = ?", "admin")
   end
   
-   def users
+  def users
     User.joins(:statuses).where("statuses.group_id = ?", self.id)
   end
 
@@ -71,7 +71,7 @@ class Group < ActiveRecord::Base
   end
 
   def recent_popular_tags
-    self.recent_questions.joins(:tags).group('tags.id').order("COUNT(questions.id) desc").pluck('tags.name, COUNT(questions.id)')
+    self.recent_questions.joins(:tags).group('tags.id').pluck('tags.name, COUNT(questions.id)')
   end
 
   def question_to_user_ratio
