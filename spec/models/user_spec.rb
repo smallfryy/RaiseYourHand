@@ -24,7 +24,7 @@ describe "User" do
   end
 
   # this is not passing idk why
-  it "is invaid without email" do 
+  it "is invalid without email" do 
       user1 = User.create(email: nil)
       user2 = User.create(email: "")
       user3 = User.create(email: "user@user.com")
@@ -35,7 +35,7 @@ describe "User" do
   end
 
   #help
-  it "is invaid without unique name" do
+  it "is invalid without unique name" do
       user1 = User.create(name: "My Amazing Name", email: "holly@holly.com")  
       user2 = User.create(name: "My Name", email: "email@email.com", password: "password", password_confirmation: "password")
       user3 = User.create(name: "My Name", email: "email@email.com")

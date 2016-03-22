@@ -13,7 +13,7 @@
 require 'spec_helper'
 
 describe "Answer" do 
-    it "is invaid without content" do 
+    it "is invalid without content" do 
       answer1 = Answer.create(content: nil)
       answer2 = Answer.create(content: "")
       answer3 = Answer.create(content: "This is my answer.")

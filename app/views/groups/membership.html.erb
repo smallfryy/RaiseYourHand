@@ -25,13 +25,6 @@
     </div>
   </div>
 
-<div class="jumbotron">
-  <div class="row text-center">
-    <h2>Activity</h2><br>
-    <%= line_chart @group.questions.group("date(questions.created_at)").count %>
-    </ul>
-  </div>
-</div>
 
 <div class="row text-center">
   <h2>Stats</h2>
