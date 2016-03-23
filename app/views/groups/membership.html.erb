@@ -16,7 +16,13 @@
 
 <% end %><br><br>
 
-
+<!-- -->
+<div class="jumbotron">
+  <div class="row text-center">
+    <h2>Most Popular Tags in the Past 3 Days</h2><br>
+      <%= pie_chart(@group.recent_popular_tags.to_h) %>
+  </div>
+</div>
 
 <div class="jumbotron">
   <div class="row text-center">
