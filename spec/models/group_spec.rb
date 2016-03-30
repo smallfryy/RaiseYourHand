@@ -11,7 +11,7 @@
 require 'spec_helper'
 
 describe "Group" do 
-    it "is invaid without name" do 
+    it "is invalid without name" do 
       group1 = Group.create(name: nil)
       group2 = Group.create(name: "")
       group3 = Group.create(name: "Group Name")
@@ -21,7 +21,7 @@ describe "Group" do
       expect(group3.errors.full_messages).to_not include "Name can't be blank"
   end
 
-     it "is invaid without description" do 
+     it "is invalid without description" do 
       group1 = Group.create(description: nil)
       group2 = Group.create(description: "")
       group3 = Group.create(description: "Group description")
@@ -31,7 +31,7 @@ describe "Group" do
       expect(group3.errors.full_messages).to_not include "Description can't be blank"
   end
 
-  it "is invaid without unique name" do
+  it "is invalid without unique name" do
       group1 = Group.create(name: "My Amazing Group", description: "My amazing description")  
       group2 = Group.create(name: "My Group", description: "My description")
       group3 = Group.create(name: "My Group", description: "My other description")

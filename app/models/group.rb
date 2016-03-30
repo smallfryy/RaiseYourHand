@@ -45,7 +45,7 @@ class Group < ActiveRecord::Base
     User.joins(:statuses).where("statuses.group_id = ?", self.id).where("statuses.status = ?", "admin")
   end
   
-   def users
+  def users
     User.joins(:statuses).where("statuses.group_id = ?", self.id)
   end
 
@@ -62,6 +62,10 @@ class Group < ActiveRecord::Base
     self.questions.where("questions.created_at > ?", DateTime.now - 3).order("questions.created_at desc")
   end
 
+  def recent_qs
+    self.questions.where("questions.created_at > ?", DateTime.now - 3)
+  end
+
   def users_w_most_questions
     self.questions.where("questions.created_at > ?", DateTime.now - 3).group("questions.user_id").order("COUNT(questions.id) desc").pluck("questions.user_id, COUNT(questions.id)")
   end
@@ -71,7 +75,7 @@ class Group < ActiveRecord::Base
   end
 
   def recent_popular_tags
-    self.recent_questions.joins(:tags).group('tags.id').order("COUNT(questions.id) desc").pluck('tags.name, COUNT(questions.id)')
+    self.recent_qs.joins(:tags).group('tags.id').order("COUNT(questions.id) desc").pluck('tags.name, COUNT(questions.id)')
   end
 
   def question_to_user_ratio

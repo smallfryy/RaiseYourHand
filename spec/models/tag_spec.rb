@@ -9,7 +9,7 @@
 #
 
 describe "Tag" do 
-  it "is invaid without name" do 
+  it "is invalid without name" do 
     tag1 = Tag.create(name: nil)
     tag2 = Tag.create(name: "")
     tag3 = Tag.create(name: "This is my tag.")
