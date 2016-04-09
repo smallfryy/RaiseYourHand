@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
       #redirect to admin panel if possible if admin
       if user.admin_status.present?
       redirect_to admin_path(user), notice: "Logged In"
+      UserMailer.welcome_email(@user).deliver_later
+        #redirect_to user_path(@user)
       else
+        UserMailer.welcome_email(@user).deliver_later
+        #redirect_to user_path(@user)
         redirect_to home_path
       end
     else
