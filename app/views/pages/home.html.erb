@@ -7,9 +7,7 @@
   <br>
   <p><%=link_to "View Groups", groups_path, class:"btn btn-primary btn-md" %></a>
   <% end %>
-
   <% if !current_user %>
-     <div class="row">
         <h3>Login</h3>
         <%= form_tag sessions_path do %>
           <div class="field">
@@ -28,7 +26,6 @@
       </div>
   <% end %>
   </div>
-
 </div>
 </div>
 

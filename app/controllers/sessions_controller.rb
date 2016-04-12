@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     @user = User.find_by_email(params[:email])
 
     if @user && @user.authenticate(params[:password])
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
       
         #redirect_to user_path(@user)
       else
-        
+
         #redirect_to user_path(@user)
         redirect_to home_path
       end

@@ -1,7 +1,6 @@
-<br><br><br><br><br>
-
+<div class="jumbotron">
 <div class="row text-center">
-  <h1> Group Registration: </h1>
+  <h1> Group Registration </h1><br>
   <% if @group.errors.any? %>
     <ul>
       <% @group.errors.full_messages.each do |msg| %>
@@ -11,12 +10,14 @@
   <% end %>
   
     <%= form_for @group do |f| %>
-      <%= f.label :name %><br>
+      <h4><%= f.label :name %><br></h4>
       <%= f.text_field :name %><br><br>
-      <%= f.label :description %><br>
+      <h4><%= f.label :description %><br></h4>
       <%= f.text_area :description %><br><br>
-      <%= f.submit "Create Group", class:"btn btn-primary btn-sm"%>
+      <%= f.submit "Create Group", class:"btn btn-primary btn-md"%>
     <% end %>
+    </div>
+    <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br>
     </div>
    
 
