@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      UserMailer.welcome_email(@user).deliver_now
+      UserMailer.welcome_email(@user).deliver
       #redirect to admin panel if possible if admin
       if @user.admin_status.present?
       redirect_to admin_path(@user), notice: "Logged In"
