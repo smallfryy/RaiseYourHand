@@ -22,7 +22,7 @@ config.action_mailer.raise_delivery_errors = true
       :domain               => "gmail.com",
       :user_name            => "raiseyourhandapp@gmail.com",
       :password             => "raiseyourhand555",
-      :authentication       => :plain,
+      :authentication       => :login,
       :enable_starttls_auto => true
   }
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
