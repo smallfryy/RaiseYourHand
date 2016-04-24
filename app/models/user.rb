@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :name
   validates :password, length: {minimum: 6, maximum: 16}
   validates :password_confirmation, length: {minimum: 6, maximum: 16}
-  #will make custom email validation later
+ 
 
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
@@ -30,8 +30,9 @@ class User < ActiveRecord::Base
     User.joins(:statuses).where('statuses.group_id = ? AND statuses.user_id = ?', group.id, self.id).where.not("statuses.status = ?", "pending").pluck('statuses.status').first
   end
 
-  def admin_status
-    Group.joins(:statuses).joins(:users).where("users.id =?", self.id).where("statuses.status =?", "admin")
+
+  def admin_of_groups
+     Group.joins(:statuses).where("statuses.user_id =? AND statuses.status = ?", self.id, "admin")
   end
 
   def most_recent_questions

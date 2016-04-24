@@ -42,17 +42,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params) ? (redirect_to @user) : (render :edit)
-    # if @user.update(user_params)
-    #   redirect_to @user
-    # else
-    #   render :edit
-    # end
   end
 
   def admin
     @user = User.find(params[:id])
-    if current_user && @user.admin_status.present?
-      @groups = @user.admin_status
+    if current_user && @user.admin_of_groups.present?
+      @groups = @user.admin_of_groups
       render :admin
     end
   end

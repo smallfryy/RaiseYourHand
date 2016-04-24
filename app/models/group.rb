@@ -49,7 +49,7 @@ class Group < ActiveRecord::Base
     User.joins(:statuses).where("statuses.group_id = ?", self.id)
   end
 
-  #need to build out admin panel for approving members etc
+  
   def members
     users.where.not("statuses.status = ?", "pending")
   end

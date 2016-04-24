@@ -18,7 +18,7 @@ class Question < ActiveRecord::Base
   belongs_to :user 
   belongs_to :group
   validates_presence_of :user_id, :group_id, :content, :title
-  #accepts_nested_attributes_for :tags, reject_if: :all_blank
+
   
   def self.by_recent
     Question.order('questions.created_at desc')

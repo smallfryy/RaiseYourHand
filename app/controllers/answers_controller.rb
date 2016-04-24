@@ -11,7 +11,6 @@
 #
 
 class AnswersController < ApplicationController
-
   # URL groups/group_id/question/question_id/answers
   # nested under question
   def index
@@ -23,31 +22,25 @@ class AnswersController < ApplicationController
   end
 
   def create
-    #fix???
+
     @answer = Answer.new(answer_params)
     @answer.question_id = params[:question_id]
     @answer.user = current_user
     @answer.save
     @group = Group.find(params[:group_id])
-    @question = Question.find(params[:question_id])
+    @question = Question.find(@answer.question_id)
     redirect_to group_question_path(@group, @question)
   end 
 
 
   def edit
-    #only render edit to owner of answer or admin of group!!!
-    #binding.pry
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @group = @question.group
     redirect_to group_question_path(@question.group,@question, @answer) unless current_user == @answer.user
-    #@user = @question.user
-    #error couldnt find anser without id
   end
 
   def update
-
-    #binding.pry
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @group = @question.group
@@ -61,11 +54,11 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    #change to answer
+    #update to allow group admin to delete answers
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @group = @question.group
-    if current_user == @answer.user
+    if current_user == @answer.user || @group.admins.include?(current_user)
       @answer.destroy
       redirect_to group_question_path(@question.group, @question, @answer)
     end

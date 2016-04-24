@@ -12,8 +12,8 @@
 class GroupsController < ApplicationController
   def index
     @groups = Group.all
-    # paginate
     @groups = Group.paginate(:page => params[:page], :per_page => 8)
+    #show only 8 groups per page to keep layout uncluttered
   end
 
   def new
@@ -53,11 +53,6 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     @group.update(group_params) ? (redirect_to @group) : (render :edit)
-    # if @group.update(group_params)
-    #   redirect_to @group
-    # else
-    #   render :edit
-    # end
   end
 
   def destroy
@@ -69,7 +64,6 @@ class GroupsController < ApplicationController
       redirect_to home_path
     else
       redirect_to @group
-      #add message
     end
   end
 
