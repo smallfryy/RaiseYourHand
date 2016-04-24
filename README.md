@@ -28,6 +28,9 @@ Help make Raise Your Hand better by contibuting to our project. We welcome any a
 ## Future
 
 We are working to make our platform easier to navigate and more intuitive for our end Users. We are integrating a data visualization component to compliment our Analytics pages. We are also currently testing a 2FA component to work in conjunction with Login authentication. 
+<p align="center">
+  <img src="app/assets/images/raiseyourhand1.gif" width="350">
+</p>
 
 ## Authors
 
